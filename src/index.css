@@ -11,7 +11,7 @@
 
 body {
     background: #f5f6fa;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .wrapper .sidebar {
@@ -348,7 +348,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 22px;
-    height: 150px;
+    height: 500px;
     overflow-y: auto;
 } 
 
@@ -370,5 +370,6 @@ tr:hover {
 }
 
 .midPart {
+    height: calc(100vh - 100px);
    overflow-y:auto !important; ;
   }
