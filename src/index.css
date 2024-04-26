@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background: #f5f6fa;
+    overflow: hidden;
+}
+
+.wrapper .sidebar {
+    background: #434343;
+    position: fixed;
+    top: 129px;
+    left: 0;
+    width: 225px;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.wrapper .sidebar .profile img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3 {
+    color: #ffffff;
+    margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p {
+    color: white;
+    font-size: 14px;
+}
+
+.wrapper .sidebar ul li a {
+    display: block;
+    padding: 13px 30px;
+    color: rgb(241, 237, 237);
+    font-size: 16px;
+    text-decoration: none;
+    position: relative;
+}
+
+.wrapper .sidebar ul li a .icon {
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
+}
+
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active {
+    color: #434343;
+
+    background: white;
+    border-right: 2px solid #434343;
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon {
+    color: #434343;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before {
+    display: block;
+}
+
+.wrapper .section {
+    width: calc(100% - 225px);
+    margin-left: 225px;
+    transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar {
+    background: #434343;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    width: 100%;
+    position: fixed;
+    left: 0px;
+}
+.wrapper .section .top_navbar .hamburger a {
+    font-size: 28px;
+    color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .hamburger a:hover {
+    color: white;
+}
+
+.wrapper.active .sidebar {
+    margin-left: -225px;
+}
+
+.wrapper.active .section {
+    margin-left: 0;
+    width: 100%;
+}
+
+
+.seprateSidebar {
+    color: white;
+    margin-top: -20px;
+}
+
+.Companylogo img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.Companylogo h1 {
+    color: #434343;
+    font-size: 26px;
+    font-weight: bolder;
+}
+
+.Companylogo {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.gameName {
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 991px) {
+    .wrapper .sidebar {
+        margin-left: 0 !important;
+    }
+
+    .wrapper.active .sidebar {
+        margin-left: -225px !important;
+    }
+}
+
+
+.Seconds {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Minutes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}
+.Minutes .Number p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 1000;
+    font-size: 30px;
+    font-style: normal;
+}
+.Seconds .Number p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 1000;
+    font-size: 30px;
+    font-style: normal;
+}
+.Minutes .text p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 1000;
+    font-style: normal;
+}
+.Seconds .text p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 1000;
+    font-style: normal;
+}
+
+.CountDown {
+    display: flex;
+    flex-direction: column;
+    margin-right: 17px;
+    align-items: center;
+    line-height: 25px;
+}
+.CountDown .CountDownHead p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 1000;
+    font-size: 30px;
+    font-style: normal;
+}
+
+.Time {
+    display: flex;
+    flex-direction: row;
+}
+
+.SessionGame {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    align-items: center;
+}
+
+.Period {
+    margin-left: 17px;
+    line-height: 20px;
+}
+.Period .id p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 1000;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.text p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 1000;
+    font-size: 30px;
+    font-style: normal;
+}
+
+/* Number box css */
+
+.Numberdiv {
+    height: 50px;
+    width: 50px;
+    background-color: #434343;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.allNumber {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-right: -2%;
+    margin-top: 10px;
+    margin: 0px;
+    margin-left: 15px;
+    height: 224px;
+    overflow-y: auto;
+}
+
+
+.mainNumberDiv {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1285px) {
+    .Numberdiv{
+        margin-right: 7px !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .Numberdiv{
+        margin-right: 9px !important;
+    }
+}
+@media screen and (max-width: 540px) {
+    .Numberdiv{
+        height: 45px !important;
+        width: 45px !important;
+        margin-right: 7px !important;
+    }
+}
+@media screen and (max-width: 431px) {
+    .Numberdiv{
+        height: 42px !important;
+        width: 42px !important;
+        margin-right: 2px !important;
+    }
+}
+@media screen and (max-width: 415px) {
+    .Numberdiv{
+        height: 40px !important;
+        width: 40px !important;
+        margin-right: 3px !important;
+    }
+}
+@media screen and (max-width: 399px) {
+    .Numberdiv{
+        margin-right: 4px !important;
+    }
+}
+@media screen and (max-width: 393px) {
+    .Numberdiv{
+        height: 45px !important;
+        width: 45px !important;
+        margin-right: 6px !important;
+    }
+}
+@media screen and (max-width: 365px) {
+    .Numberdiv{
+        height: 40px !important;
+        width: 40px !important;
+        margin-right: 7px !important;
+    }
+}
+@media screen and (max-width: 343px) {
+    .Numberdiv{
+        height: 40px !important;
+        width: 40px !important;
+        margin-right: 5px !important;
+    }
+}
+@media screen and (max-width: 328px) {
+    .Numberdiv{
+        height: 35px !important;
+        width: 35px !important;
+        margin-right: 7px !important;
+    }
+}
+
+.container {
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 22px;
+    height: 150px;
+    overflow-y: auto;
+} 
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.midPart {
+   overflow-y:auto !important; ;
+  }
