@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Yell/static/css/main.06306085.css",
+    "main.js": "/Yell/static/js/main.9f95ea93.js",
+    "static/js/453.8b4f0df7.chunk.js": "/Yell/static/js/453.8b4f0df7.chunk.js",
+    "index.html": "/Yell/index.html",
+    "main.06306085.css.map": "/Yell/static/css/main.06306085.css.map",
+    "main.9f95ea93.js.map": "/Yell/static/js/main.9f95ea93.js.map",
+    "453.8b4f0df7.chunk.js.map": "/Yell/static/js/453.8b4f0df7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06306085.css",
+    "static/js/main.9f95ea93.js"
+  ]
+}
