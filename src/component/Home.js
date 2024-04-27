@@ -1,8 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
 
+  const navigate = useNavigate();
+
+  const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
+    if (!auth_token) {
+      navigate('/');
+    }
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('userinfo');
+    navigate('/');
+  }
 
   return (
     <>
@@ -20,15 +37,15 @@ export default function Home() {
                 </a>
               </div>
               <div className='gameName'>Wingo</div>
-              <div><i className="fa-regular fa-user fa-xl" style={{color:"white"}}></i></div>
+              <div><i className="fa-solid fa-wallet" style={{ color: "white" }}></i> <span style={{ color: "white", textAlign: "center" }}>{userInfo?.wallet}</span></div>
             </div>
 
           </div>
           <div className="sidebar">
             <div className="profile">
               <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture" />
-              <h3>Anuj Pandey</h3>
-              <p>Wallet</p>
+              <h3>{userInfo?.name}</h3>
+              <p>{userInfo?.wallet}</p>
             </div>
             <hr className='seprateSidebar'></hr>
             <ul>
@@ -60,6 +77,14 @@ export default function Home() {
                 <a href="#">
                   <span className="icon"><i className="fa-solid fa-handshake-angle"></i></span>
                   <span className="item">Help and Support</span>
+                </a>
+              </li>
+              <li className='LogoutButton'
+                onClick={handleLogout}
+                >
+                <a >
+                  <span className="icon"><i className="fa-solid fa-right-from-bracket"></i></span>
+                  <span className="item">Logout</span>
                 </a>
               </li>
             </ul>

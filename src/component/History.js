@@ -19,7 +19,7 @@ export default function History() {
 
     return (
         <>
-            <div className="container">
+            <div className="Tablecontainer">
                 <table>
                     <thead>
                         <tr>
