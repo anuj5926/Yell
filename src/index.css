@@ -240,7 +240,7 @@ body {
 .Period .id p {
     font-family: 'Open Sans', sans-serif;
     font-weight: 1000;
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
 }
 
@@ -660,7 +660,6 @@ tr:hover {
         height: 40px;
         width: 90%;
     }
-    
 }
 @media (max-width: 500px) {
     .social-container a {
@@ -688,12 +687,26 @@ tr:hover {
         font-size: 10px !important;
         padding: 7px 20px !important;
     }
-}
-@media (max-width: 440px) {
     .Login button{  
         font-size: 8px !important;
         padding: 7px 10px !important;
+    }
+    .Login input::placeholder{
+        font-size: 13px !important;
+    }
+    .Login input{
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+}
 
+@media (max-width: 410px) {
+    .Login input{
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+    .Login input::placeholder{
+        font-size: 11px !important;
     }
 }
 @media (max-width: 655px) {
@@ -717,3 +730,90 @@ tr:hover {
     background-color: #ff4266 !important;
     border-radius: 50px;
 }
+
+/* modal for betting  */
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 20px;
+    padding-top: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn-close:hover {
+    color: #555;
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+  }
+  
+  .amount-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .amount-input {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px; /* Add space between text box and buttons */
+  }
+  
+  .btn {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: #434343;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .btn:hover {
+    background-color: #727171;
+  }
+  
+  .preset-amounts {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn-amount {
+    margin:  5px;
+  }
+  

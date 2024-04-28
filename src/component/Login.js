@@ -9,16 +9,16 @@ import { Context } from '../Context/Context';
 
 export default function Login() {
 
-    const {setLoad } = useContext(Context);
+    const { setLoad ,setLoadColor} = useContext(Context);
 
     const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
-        if(auth_token) {
+        if (auth_token) {
             navigate('/game');
         }
-    },[])
+    }, [])
 
     const [signUpIn, setSignUpIn] = useState(false)
     const [signUpData, setSignUpData] = useState({
@@ -74,45 +74,48 @@ export default function Login() {
     };
 
     const handleClickSignUpUser = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         if (signUpData.name !== "" && signUpData.username !== "" && signUpData.password && signUpData?.phone?.length === 10) {
             setLoad(true);
+            setLoadColor("#ff4364")
             let res = await SignUp(signUpData)
             console.log(res)
-            if (res.data.status) {
-                localStorage.setItem("userinfo", JSON.stringify(res.data.data));
-                navigate("/game")
-                toast.success('User Registered Successfully', {
-                    position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Flip,
-                });
-                setSignUpData((prevData) => ({
-                    ...prevData,
-                    name: "",
-                    username: "",
-                    password: "",
-                    phone: "",
-                }));
-            }
-            else{
-                toast.error(res.data.message, {
-                    position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Flip,
-                });
+            if (res) {
+                if (res.data.status) {
+                    localStorage.setItem("userinfo", JSON.stringify(res.data.data));
+                    navigate("/game")
+                    toast.success('User Registered Successfully', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Flip,
+                    });
+                    setSignUpData((prevData) => ({
+                        ...prevData,
+                        name: "",
+                        username: "",
+                        password: "",
+                        phone: "",
+                    }));
+                }
+                else {
+                    toast.error(res.data.message, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Flip,
+                    });
+                }
             }
             setLoad(false);
         }
@@ -129,7 +132,7 @@ export default function Login() {
                 transition: Flip,
             });
         }
-        else{
+        else {
             toast.error("Give all Details Properly", {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -145,48 +148,52 @@ export default function Login() {
     }
 
     const handleClickSignInUser = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         if (signInData.username !== "" && signInData.password !== "") {
             setLoad(true);
+            setLoadColor("#ff4364")
             console.log(signInData)
             let res = await SignIn(signInData);
             console.log(res);
-            if(res.data.status){
-                localStorage.setItem("userinfo", JSON.stringify(res.data.data));
-                toast.success('User Login Successfully', {
-                    position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Flip,
-                });
-                navigate("/game")
-                setSignInData((prevData) => ({
-                    ...prevData,
-                    username: "",
-                    password: "",
-                }));
-            }
-            else{
-                toast.error(res.data.message, {
-                    position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Flip,
-                });
+            if (res) {
+                if (res.data.status) {
+                    localStorage.setItem("userinfo", JSON.stringify(res.data.data));
+                    toast.success('User Login Successfully', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Flip,
+                    });
+                    navigate("/game")
+                    setSignInData((prevData) => ({
+                        ...prevData,
+                        username: "",
+                        password: "",
+                    }));
+                }
+                else {
+                    toast.error(res.data.message, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Flip,
+                    });
+                }
+                setLoad(false);
             }
             setLoad(false);
         }
-        else{
+        else {
             toast.error("Give all Details Properly", {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -209,7 +216,7 @@ export default function Login() {
                     <div className="form-container sign-up-container">
                         <form action="#">
                             <h1>Create Account</h1>
-                            <div className="social-container">
+                            {/*<div className="social-container">
                                 <a href="#" className="social">
                                     <i className="fab fa-facebook-f" />
                                 </a>
@@ -219,7 +226,7 @@ export default function Login() {
                                 <a href="#" className="social">
                                     <i className="fab fa-linkedin-in" />
                                 </a>
-                            </div>
+                            </div>*/}
                             <span>or use your email for registration</span>
                             <input type="name" placeholder="Name" value={signUpData.name} onChange={(e) => { handleChangeSignUp(e, "name") }} required />
                             <input type="username" placeholder="Username" value={signUpData.username} onChange={(e) => { handleChangeSignUp(e, "username") }} required />
@@ -231,7 +238,7 @@ export default function Login() {
                     <div className="form-container sign-in-container">
                         <form >
                             <h1>Sign in</h1>
-                            <div className="social-container">
+                            {/*<div className="social-container">
                                 <a href="#" className="social">
                                     <i className="fab fa-facebook-f" />
                                 </a>
@@ -241,7 +248,7 @@ export default function Login() {
                                 <a href="#" className="social">
                                     <i className="fab fa-linkedin-in" />
                                 </a>
-                            </div>
+                            </div>*/}
                             <span>or use your account</span>
                             <input type="Username" value={signInData.username} onChange={(e) => { handleChangeSignIn(e, "username") }} placeholder="Username" required />
                             <input type="password" value={signInData.password} onChange={(e) => { handleChangeSignIn(e, "password") }} placeholder="Password" required />

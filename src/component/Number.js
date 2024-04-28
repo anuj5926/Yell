@@ -1,9 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Context } from '../Context/Context';
 
 export default function Number() {
 
-    const numberArray = Array.from({ length: 100 }, (_, index) => index + 1);
-    const [numberData, setNumberData] = useState(numberArray)
+    const {sessionDetail,setNumberModal,setNumberSelected} =useContext(Context);
+    const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
+    const [numberData, setNumberData] = useState([])
+    const [sessionId,setSessionId]= useState("");
+
+    useEffect(() => {
+        if (auth_token && Object.keys(sessionDetail).length > 0) {
+            setNumberData(sessionDetail?.session_data?.bet_numbers_position)
+            setSessionId(sessionDetail?.session_data?.session_id)
+        }
+    },[sessionDetail]);
+
+    const handleClickNumber=(number)=>{
+       setNumberSelected(number);
+       setNumberModal(true);
+    }
 
     return (
         <>
@@ -14,7 +29,7 @@ export default function Number() {
                             <p>Period</p>
                         </div>
                         <div className='id'>
-                            <p>202111184440</p>
+                            <p>{sessionId}</p>
                         </div>
                     </div>
                     <div className='CountDown'>
@@ -44,9 +59,9 @@ export default function Number() {
 
                 <div className='mainNumberDiv'>
                     <div className='allNumber'>
-                        {numberData.map((ele, i) => {
+                        {numberData?.map((ele, i) => {
                             return (
-                                <div key={i} className='Numberdiv'>
+                                <div key={i} className='Numberdiv' onClick={()=>handleClickNumber(ele)} >
                                     {ele}
                                 </div>
                             )

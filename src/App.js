@@ -8,7 +8,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 function App() {
 
-const {load} = useContext(Context);
+const {load,loadColor} = useContext(Context);
 
   return (
     <>
@@ -31,7 +31,7 @@ const {load} = useContext(Context);
         position:'absolute',
         top:"50%",
         left:"50%",
-        zIndex: 22,
+        zIndex: 10000,
         transform: "translate(-50%, -50%)",
       }}>
         <RotatingLines
@@ -39,7 +39,7 @@ const {load} = useContext(Context);
           height="96"
           width="96"
           color="grey"
-          strokeColor="#ff4266"
+          strokeColor={loadColor}
           strokeWidth="5"
           animationDuration="0.75"
           ariaLabel="rotating-lines-loading"

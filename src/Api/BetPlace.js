@@ -1,14 +1,11 @@
-import React from "react";
 import axios from "axios";
 import { Flip, toast } from "react-toastify";
 
-export const SignUp = async (data) => {
+export const BetPlace =async (data)=>{
     try {
-        const response = await axios.post(`${process.env.REACT_APP_SIGNUP_URL}`, data);
-        if (response) {
-            return response;
-        }
-    } catch (error) {
+        const response = await axios.post(`${process.env.REACT_APP_BETPLACE_URL}`,data);
+        return response;
+      } catch (error) {
         console.error('Error during API call:', error.message);
         toast.error(error.message, {
             position: "bottom-right",
@@ -21,5 +18,5 @@ export const SignUp = async (data) => {
             theme: "dark",
             transition: Flip,
         });
-    }
+      }
 }
