@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { SessionDetail } from '../Api/SessionDetail';
 import io from 'socket.io-client';
+import { useLocation } from 'react-router-dom';
 let socket = undefined;
 
 const Context = createContext();
@@ -10,15 +11,18 @@ const ContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null)
   const [load, setLoad] = useState(false)
   const [numberModal, setNumberModal] = useState(false)
+  const [depositModal, setDepositModal] = useState(false)
   const [numberSelected,setNumberSelected] = useState("")
   const [loadColor, setLoadColor] = useState("")
   const [sessionDetail, setSessionDetail] = useState({})
   const [socketConnected, setSocketConnected] = useState(false);
   const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
 
+  const { pathname } = useLocation();
+
   useEffect(() => {
     async function getSession() {
-      if (auth_token) {
+      if (auth_token && pathname==="/game") {
         setLoad(true);
         setLoadColor("#434343");
         let res = await SessionDetail()
@@ -29,7 +33,7 @@ const ContextProvider = ({ children }) => {
       }
     }
     getSession();
-  }, [auth_token])
+  }, [auth_token,pathname])
 
 
   useEffect(() => {
@@ -55,7 +59,7 @@ const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         setUserInfo, userInfo, setLoad, load, sessionDetail,setLoadColor,loadColor,setNumberModal,numberModal,
-        setNumberSelected,numberSelected
+        setNumberSelected,numberSelected,setDepositModal,depositModal
       }}
     >
       {children}

@@ -208,6 +208,21 @@ export default function Login() {
         }
     }
 
+    const handleChangeLoginMethod = ()=>{
+        setSignUpIn(!signUpIn)
+        setSignInData((prevData) => ({
+           ...prevData,
+            username: "",
+            password: "",
+        }));
+        setSignUpData((prevData) => ({
+            ...prevData,
+            name: "",
+            username: "",
+            password: "",
+            phone: "",
+        }));
+    }
 
     return (
         <>
@@ -261,14 +276,14 @@ export default function Login() {
                             <div className="overlay-panel overlay-left">
                                 <h1>Welcome Back!</h1>
                                 <p>To keep connected with us please login with your personal info</p>
-                                <button className="ghost" id="signIn" onClick={() => setSignUpIn(!signUpIn)}>
+                                <button className="ghost" id="signIn" onClick={() => handleChangeLoginMethod()}>
                                     Sign In
                                 </button>
                             </div>
                             <div className="overlay-panel overlay-right">
                                 <h1>Hello, Friend!</h1>
                                 <p>Enter your personal details and start journey with us</p>
-                                <button className="ghost" id="signUp" onClick={() => setSignUpIn(!signUpIn)}>
+                                <button className="ghost" id="signUp" onClick={() => handleChangeLoginMethod()}>
                                     Sign Up
                                 </button>
                             </div>

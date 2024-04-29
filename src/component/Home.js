@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Home() {
 
   const navigate = useNavigate();
-
+ 
   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const [isOpen, setIsOpen] = useState(false)
@@ -32,7 +32,7 @@ export default function Home() {
           <div className="section">
             <div className="top_navbar">
               <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
-                <a href="#">
+                <a >
                   <i className="fas fa-bars"></i>
                 </a>
               </div>
@@ -56,10 +56,10 @@ export default function Home() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <Link to="/deposit">
                   <span className="icon"><i className="fa-solid fa-wallet"></i></span>
                   <span className="item">Deposit</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#">

@@ -817,3 +817,194 @@ tr:hover {
     margin:  5px;
   }
   
+
+  /* Deposit page  */
+
+  .fullpage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  .w-3 {
+    border: 1px solid #b8b8b8;
+    margin-bottom: 40px;
+    border: 1px solid #d4ddec;box-shadow: 0 0px 5px #d4ddec;
+  }
+  .w-3 {
+    width: 440px;
+  }
+  .back-top {
+    background: #eea8a8;
+    box-shadow: 0 0 2px #ccc;
+    padding: 5px 15px;
+  }
+  .back-top i {
+    background: #721213;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+  .text-ceter {
+    text-align: center;
+  }
+  .addFunds {
+    background: transparent;
+    border: 1px solid #76aa7c;
+    border-radius: 5px;
+  }
+  .addFunds {
+    background: transparent;
+    border: 1px solid #76aa7c;
+    border-radius: 5px;
+    color: #b97373;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 6px 18px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .addFunds i {
+    color: #000;
+    border: 1px solid #000;
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  .d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .position-relative {
+    position: relative;
+  }
+  .method-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+  .px-3 {
+    padding: 15px;
+  }
+  .form-label {
+    display: block;
+    text-transform: capitalize;
+    color: #b97373;
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .method-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .form-control {
+    width: 100%;
+    border: 1px solid #d4ddec;
+    background: transparent;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    color: #333;
+    box-shadow: 0 0px 5px #d4ddec;
+    
+  }
+  .form-control option {
+    background: #fff;
+  }
+  .mb-3 {
+    margin-bottom: 20px;
+  }
+  .ps-3 {
+    padding-left: 45px;
+  }
+  .instructions-block {
+    border: 1px solid #b8b8b85c;
+    padding: 20px 12px;
+    border-radius: 4px;
+    border: 1px solid #d4ddec;box-shadow: 0 0px 5px #d4ddec;
+  }
+  .step-text {
+    font-size: 14px;
+    color: #671718;
+    margin-bottom: 8px;
+  }
+  .qr-code {
+    width: 150px;
+  }
+  .qr-code img {
+    width: 100%;
+    border: 2px solid #3f2682;
+    padding: 8px;
+  }
+  .scanandpay-btn {
+    width: 100%;
+    background: #3f2682;
+    color: #fff;
+    border: 0;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 8px 5px;
+    border-radius: 5px;
+  }
+  .upiid-text {
+    color: #671718;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .upiid-text-text {
+    color: #671718;
+    font-size: 16px;
+    margin-left: 15px;
+  }
+  .submit-btn {
+    background: #671718;
+    color: #fff;
+    border: 0;
+    font-size: 18px;
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin: 0px auto;
+    display: inline-block;
+    margin-top: 25px;
+  }
+  .support-btn {
+    color: #671718;
+    border: 1px solid #d4ddec;
+    box-shadow: 0 0px 5px #d4ddec;
+    background: transparent;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 440px) {
+    .w-3 {
+      width: 100%;
+      border: 0;
+      box-shadow: none;
+    }
+  }

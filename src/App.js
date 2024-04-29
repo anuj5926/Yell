@@ -1,14 +1,15 @@
 import { ToastContainer } from "react-toastify";
 import GamePage from "./component/GamePage";
 import Login from "./component/Login";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./Context/Context";
 import { RotatingLines } from "react-loader-spinner";
+import Deposit from "./component/Deposit";
 
 function App() {
 
-const {load,loadColor} = useContext(Context);
+  const { load, loadColor } = useContext(Context);
 
   return (
     <>
@@ -28,14 +29,14 @@ const {load,loadColor} = useContext(Context);
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        position:'absolute',
-        top:"50%",
-        left:"50%",
+        position: 'absolute',
+        top: "50%",
+        left: "50%",
         zIndex: 10000,
         transform: "translate(-50%, -50%)",
       }}>
         <RotatingLines
-          visible={load? true :false}
+          visible={load ? true : false}
           height="96"
           width="96"
           color="grey"
@@ -47,12 +48,11 @@ const {load,loadColor} = useContext(Context);
           wrapperClass=""
         />
       </div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/game" element={<GamePage />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/game" element={<GamePage />} exact />
+        <Route path="/deposit" element={<Deposit />} exact />
+      </Routes>
     </>
   );
 }
