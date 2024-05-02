@@ -11,7 +11,7 @@
 
 body {
     background: #f5f6fa;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .wrapper .sidebar {
@@ -426,17 +426,6 @@ tr:hover {
 	box-sizing: border-box;
 }
 
-/* body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
-} */
-
 .Login h1 {
 	font-weight: bold;
 	margin: 0;
@@ -646,6 +635,8 @@ tr:hover {
 	height: 40px;
 	width: 40px;
 } 
+
+
 
 @media (min-width: 1200px) {
     .h1, h1 {
@@ -919,7 +910,7 @@ tr:hover {
   }
   .method-icon {
     position: absolute;
-    left: 15px;
+    /* left: 15px; */
     top: 50%;
     transform: translateY(-50%);
   }
@@ -1007,4 +998,11 @@ tr:hover {
       border: 0;
       box-shadow: none;
     }
+  }
+
+  .phonepeLogo{
+    position: absolute;
+    right: 10px !important;
+    top: 50%;
+    transform: translateY(-50%);
   }

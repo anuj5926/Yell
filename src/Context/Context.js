@@ -15,34 +15,40 @@ const ContextProvider = ({ children }) => {
   const [numberSelected,setNumberSelected] = useState("")
   const [loadColor, setLoadColor] = useState("")
   const [sessionDetail, setSessionDetail] = useState({})
+  const [sessionDetailStatus, setSessionDetailStatus] = useState(false)
   const [socketConnected, setSocketConnected] = useState(false);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [depositDetail, setDepositDetail] = useState({});
   const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
-
-  const { pathname } = useLocation();
 
   useEffect(() => {
     async function getSession() {
-      if (auth_token && pathname==="/game") {
+      if (auth_token) {
         setLoad(true);
         setLoadColor("#434343");
         let res = await SessionDetail()
         if (res) {
           setLoad(false);
           setSessionDetail(res.data);
+          setSessionDetailStatus(true);
         }
+      }
+      else{
+        setSessionDetail({})
       }
     }
     getSession();
-  }, [auth_token,pathname])
+  }, [auth_token])
 
 
   useEffect(() => {
-    if (auth_token && Object.keys(sessionDetail).length > 0) {
+    if (auth_token && sessionDetailStatus) {
       socket = io(`${process.env.REACT_APP_SOCKET_CONNECTION_URL}`);
       setSocketConnected(true);
       console.log(socket)
+      setSessionDetailStatus(false);
     }
-  }, [auth_token, sessionDetail])
+  }, [auth_token, sessionDetailStatus])
 
   useEffect(() => {
     if (socketConnected) {
@@ -50,7 +56,7 @@ const ContextProvider = ({ children }) => {
       socket.emit('newUserJoin', sessionDetail?.session_data?.session_id);
 
       socket.on("session_details", (data)=>{
-        console.log(data)
+        console.log("session_details",data)
       });
     }
   }, [socket, socketConnected])
@@ -59,7 +65,8 @@ const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         setUserInfo, userInfo, setLoad, load, sessionDetail,setLoadColor,loadColor,setNumberModal,numberModal,
-        setNumberSelected,numberSelected,setDepositModal,depositModal
+        setNumberSelected,numberSelected,setDepositModal,depositModal,setSideBarOpen,sideBarOpen,setDepositDetail,
+        depositDetail
       }}
     >
       {children}

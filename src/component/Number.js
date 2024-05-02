@@ -3,7 +3,7 @@ import { Context } from '../Context/Context';
 
 export default function Number() {
 
-    const {sessionDetail,setNumberModal,setNumberSelected} =useContext(Context);
+    const {sessionDetail,setNumberModal,setNumberSelected,sideBarOpen} =useContext(Context);
     const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
     const [numberData, setNumberData] = useState([])
     const [sessionId,setSessionId]= useState("");
@@ -16,8 +16,10 @@ export default function Number() {
     },[sessionDetail]);
 
     const handleClickNumber=(number)=>{
-       setNumberSelected(number);
-       setNumberModal(true);
+       if(!sideBarOpen){
+           setNumberSelected(number);
+           setNumberModal(true);
+       }
     }
 
     return (
