@@ -786,7 +786,7 @@ tr:hover {
     margin-right: 10px; /* Add space between text box and buttons */
   }
   
-  .btn {
+  .Numberbtn {
     padding: 8px 15px;
     border: none;
     cursor: pointer;
@@ -837,6 +837,14 @@ tr:hover {
     background: #eea8a8;
     box-shadow: 0 0 2px #ccc;
     padding: 5px 15px;
+  }
+  .back_btn {
+    background: #727171;
+    box-shadow: 0 0 2px #ccc;
+    padding: 5px 15px;
+    border-radius: 100%;
+    height: 42px;
+    width: 42px;
   }
   .back-top i {
     background: #721213;
@@ -1005,4 +1013,78 @@ tr:hover {
     right: 10px !important;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  /* Style the sidenav links and the dropdown button */
+  .sidenav a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .sidenav a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+  }
+  
+  .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  .active {
+    background-color: green;
+    color: white;
+  }
+  .dropdown-container {
+    display: none;
+    background-color: #262626;
+  }
+
+  .depositContainer{
+    position: absolute;
+    width: 100% !important;
+  }
+  
+  .btnyellow-custom:hover,
+  .btnyellow-custom:focus,
+  .btnyellow-custom:active,
+  .btnyellow-custom.active {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important; 
+  }
+  .btngreen-success-custom:hover,
+  .btngreen-success-custom:focus,
+  .btngreen-success-custom:active,
+  .btngreen-success-custom.active {
+    background-color: #28a745 !important; /* Success button color */
+    border-color: #28a745 !important; /* Border color */
+  }
+
+  .btnred-danger-custom:hover,
+  .btnred-danger-custom:focus,
+  .btnred-danger-custom:active,
+  .btnred-danger-custom.active {
+    background-color: #dc3545 !important; /* Danger button color */
+    border-color: #dc3545 !important; /* Border color */
   }

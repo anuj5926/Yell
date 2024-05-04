@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { SessionDetail } from '../Api/SessionDetail';
 import io from 'socket.io-client';
-import { useLocation } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 let socket = undefined;
 
 const Context = createContext();
@@ -18,8 +18,10 @@ const ContextProvider = ({ children }) => {
   const [sessionDetailStatus, setSessionDetailStatus] = useState(false)
   const [socketConnected, setSocketConnected] = useState(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [depositDetail, setDepositDetail] = useState({});
   const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
+
+  const {pathname} = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getSession() {
@@ -40,6 +42,12 @@ const ContextProvider = ({ children }) => {
     getSession();
   }, [auth_token])
 
+  useEffect(() => {
+    const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
+    if (!auth_token) {
+      navigate('/');
+    }
+  }, [pathname,auth_token])
 
   useEffect(() => {
     if (auth_token && sessionDetailStatus) {
@@ -58,6 +66,9 @@ const ContextProvider = ({ children }) => {
       socket.on("session_details", (data)=>{
         console.log("session_details",data)
       });
+      socket.on("current_Timer", (data)=>{
+        console.log("current_Timer",data)
+      });
     }
   }, [socket, socketConnected])
 
@@ -65,8 +76,7 @@ const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         setUserInfo, userInfo, setLoad, load, sessionDetail,setLoadColor,loadColor,setNumberModal,numberModal,
-        setNumberSelected,numberSelected,setDepositModal,depositModal,setSideBarOpen,sideBarOpen,setDepositDetail,
-        depositDetail
+        setNumberSelected,numberSelected,setDepositModal,depositModal,setSideBarOpen,sideBarOpen
       }}
     >
       {children}

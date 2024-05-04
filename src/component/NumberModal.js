@@ -30,14 +30,14 @@ export default function NumberModal() {
             console.log(res.data)
             if (res.data.status) {
                 toast.success('Bet Placed Successfully', {
-                    position: "bottom-right",
-                    autoClose: 5000,
+                    position: "top-right",
+                    autoClose: 1500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "dark",
+                    theme: "colored",
                     transition: Flip,
                 });
                 setBetAmount(10);
@@ -47,14 +47,14 @@ export default function NumberModal() {
             }
             else {
                 toast.error(res.message, {
-                    position: "bottom-right",
-                    autoClose: 5000,
+                    position: "top-right",
+                    autoClose: 1500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "dark",
+                    theme: "colored",
                     transition: Flip,
                 });
                 setLoad(false);
@@ -67,7 +67,7 @@ export default function NumberModal() {
         <>
             {numberModal && <div className="modal">
                 <div className="modal-content">
-                    <button className="btn btn-close" onClick={() => setNumberModal(false)}>
+                    <button className="Numberbtn btn-close" onClick={() => setNumberModal(false)}>
                         <i className="fas fa-times" />
                     </button>
                     <h2>

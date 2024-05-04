@@ -6,6 +6,9 @@ import { useContext } from "react";
 import { Context } from "./Context/Context";
 import { RotatingLines } from "react-loader-spinner";
 import Deposit from "./component/Deposit";
+import DepositHistory from "./component/DepositHistory";
+import WithdrawHistory from "./component/WithdrawHistory";
+import Withdraw from "./component/Withdraw";
 
 function App() {
 
@@ -51,7 +54,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/game" element={<GamePage />} exact />
-        <Route path="/deposit" element={<Deposit />} exact />
+        <Route path="/deposit/depositMoney" element={<Deposit />} exact />
+        <Route path="/deposit/depositHistory" element={<DepositHistory />} exact />
+        <Route path="/withdraw/withdrawMoney" element={<Withdraw />} exact />
+        <Route path="/withdraw/withdrawHistory" element={<WithdrawHistory />} exact />
       </Routes>
     </>
   );

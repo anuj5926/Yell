@@ -1,24 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../Context/Context';
-import { GetDeposit } from '../Api/GetDeposit';
-import { Flip, toast } from 'react-toastify';
 
 export default function Home() {
 
   const navigate = useNavigate();
-  
-  const { setSideBarOpen,setLoad ,setLoadColor,setDepositDetail } = useContext(Context)
+
+  const { setSideBarOpen } = useContext(Context)
   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
-    if (!auth_token) {
-      navigate('/');
-    }
-  }, [])
+  const [isDepositOpen, setIsDepositOpen] = useState(false)
+  const [isWithdrawOpen, setIsWithdrawOpen] = useState(false)
 
   const handleLogout = () => {
     localStorage.removeItem('userinfo');
@@ -44,37 +37,6 @@ export default function Home() {
   }, [isOpen]);
 
 
-  const handleDeposit = async () => {
-    setLoad(true);
-    setLoadColor("#ffffff");
-    let data = {
-      "username": JSON.parse(localStorage.getItem('userinfo'))?.username,
-      "payment_gateway": "upi-QR"
-    }
-    let res = await GetDeposit(data);
-    if (res) {
-      if (res.data.status) {
-        setDepositDetail(res.data.data)
-        navigate("/deposit")
-      }
-      else {
-        toast.error(res.data.message, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Flip,
-        });
-      }
-      setLoad(false);
-    }
-    setLoad(false);
-  }
-
   return (
     <>
       <div className='content'>
@@ -99,27 +61,29 @@ export default function Home() {
             <div className="profile">
               <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture" />
               <h3>{userInfo?.name}</h3>
-              <p><i className="fa-solid fa-wallet" style={{ color: "white" }}></i>{" " +userInfo?.wallet}</p>
+              <p><i className="fa-solid fa-wallet" style={{ color: "white" }}></i>{" " + userInfo?.wallet}</p>
             </div>
             <hr className='seprateSidebar'></hr>
             <ul>
               <li>
-                <a href="#" className="">
-                  <span className="icon"><i className="fas fa-home"></i></span>
-                  <span className="item">Home</span>
-                </a>
-              </li>
-              <li>
-                <Link onClick={handleDeposit}>
+                <a className='deposit' onClick={()=>setIsDepositOpen(!isDepositOpen)} >
                   <span className="icon"><i className="fa-solid fa-wallet"></i></span>
                   <span className="item">Deposit</span>
-                </Link>
+                </a>
+                <div className="dropdown-container" style={{display:isDepositOpen?"block":"none"}}>
+                  <Link to ="/deposit/depositMoney" >Deposit Money</Link>
+                  <Link to="/deposit/depositHistory">Despoit History</Link>
+                </div>
               </li>
               <li>
-                <a href="#">
+                <a className='withdraw' onClick={()=>setIsWithdrawOpen(!isWithdrawOpen)}>
                   <span className="icon"><i className="fa-solid fa-indian-rupee-sign"></i></span>
                   <span className="item">Withdraw</span>
                 </a>
+                <div className="dropdown-container" style={{display:isWithdrawOpen?"block":"none"}}>
+                  <Link to="/withdraw/withdrawMoney">Withdraw Money</Link>
+                  <Link to="/withdraw/withdrawHistory">Withdraw History</Link>
+                </div>
               </li>
               <li>
                 <a href="#">

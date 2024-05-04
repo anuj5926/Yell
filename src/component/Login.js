@@ -85,14 +85,14 @@ export default function Login() {
                     localStorage.setItem("userinfo", JSON.stringify(res.data.data));
                     navigate("/game")
                     toast.success('User Registered Successfully', {
-                        position: "bottom-right",
-                        autoClose: 5000,
+                        position: "top-right",
+                        autoClose: 1500,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "dark",
+                        theme: "colored",
                         transition: Flip,
                     });
                     setSignUpData((prevData) => ({
@@ -105,14 +105,14 @@ export default function Login() {
                 }
                 else {
                     toast.error(res.data.message, {
-                        position: "bottom-right",
-                        autoClose: 5000,
+                        position: "top-right",
+                        autoClose: 1500,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "dark",
+                        theme: "colored",
                         transition: Flip,
                     });
                 }
@@ -121,27 +121,27 @@ export default function Login() {
         }
         else if (signUpData.name !== "" && signUpData.username !== "" && signUpData.password && signUpData?.phone?.length !== 10) {
             toast.warn('Give Correct Number', {
-                position: "bottom-right",
-                autoClose: 5000,
+                position: "top-right",
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "colored",
                 transition: Flip,
             });
         }
         else {
             toast.error("Give all Details Properly", {
-                position: "bottom-right",
-                autoClose: 5000,
+                position: "top-right",
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "colored",
                 transition: Flip,
             });
         }
@@ -159,14 +159,14 @@ export default function Login() {
                 if (res.data.status) {
                     localStorage.setItem("userinfo", JSON.stringify(res.data.data));
                     toast.success('User Login Successfully', {
-                        position: "bottom-right",
-                        autoClose: 5000,
+                        position: "top-right",
+                        autoClose: 1500,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "dark",
+                        theme: "colored",
                         transition: Flip,
                     });
                     navigate("/game")
@@ -178,14 +178,14 @@ export default function Login() {
                 }
                 else {
                     toast.error(res.data.message, {
-                        position: "bottom-right",
-                        autoClose: 5000,
+                        position: "top-right",
+                        autoClose: 1500,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "dark",
+                        theme: "colored",
                         transition: Flip,
                     });
                 }
@@ -195,14 +195,14 @@ export default function Login() {
         }
         else {
             toast.error("Give all Details Properly", {
-                position: "bottom-right",
-                autoClose: 5000,
+                position: "top-right",
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "colored",
                 transition: Flip,
             });
         }

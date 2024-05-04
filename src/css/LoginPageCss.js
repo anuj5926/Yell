@@ -7,9 +7,9 @@ const LoginPageCss = styled.body`
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-  height: 100vh;
+  height: 95vh;
   margin: -20px 0 50px;
-  overflow: hidden;
+  overflow: hidden !important;
 `;
 
 export default LoginPageCss;

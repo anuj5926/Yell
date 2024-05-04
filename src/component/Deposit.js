@@ -1,72 +1,116 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../Context/Context';
 import DepositCss from '../css/DepositCss';
 import QRCode from 'react-qr-code';
 import { DepositDone } from '../Api/DepositDone';
 import { Flip, toast } from 'react-toastify';
+import { GetDeposit } from '../Api/GetDeposit';
 
 export default function Deposit() {
 
     const navigate = useNavigate();
-    const { depositDetail, setLoad, setLoadColor } = useContext(Context);
+    const { pathname } = useLocation();
+    const { setLoad, setLoadColor } = useContext(Context);
 
     const [amount, setAmount] = useState("")
     const [transactionId, setTransactionId] = useState("")
-
-    const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
+    const [depositData, setDepositData] = useState("")
 
     useEffect(() => {
-        if (!auth_token) {
-            navigate('/');
+        if (pathname === "/deposit/depositMoney") {
+            handleDeposit();
         }
-    })
-    
+    }, [pathname])
 
-    const handleBack = () => {
-        navigate('/game');
-    }
-
-    const handlePaymentDone = async () => {
+    const handleDeposit = async () => {
         setLoad(true);
         setLoadColor("#434343");
         let data = {
             "username": JSON.parse(localStorage.getItem('userinfo'))?.username,
-            "amount": Number(amount),
-            "transaction_id": transactionId
+            "payment_gateway": "upi-QR"
         }
-        let res = await DepositDone(data);
+        let res = await GetDeposit(data);
         if (res) {
             if (res.data.status) {
-                toast.success('Deposit Request Sent Successfully', {
-                    position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Flip,
-                });
-                navigate("/game")
+                setDepositData(res.data.data)
             }
             else {
                 toast.error(res.data.message, {
-                    position: "bottom-right",
-                    autoClose: 5000,
+                    position: "top-right",
+                    autoClose: 1500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "dark",
+                    theme: "colored",
                     transition: Flip,
                 });
             }
             setLoad(false);
         }
         setLoad(false);
+    }
+
+    const handleBack = () => {
+        navigate('/game');
+    }
+
+    const handlePaymentDone = async () => {
+        if (transactionId !== "" && amount > 0) {
+            setLoad(true);
+            setLoadColor("#434343");
+            let data = {
+                "username": JSON.parse(localStorage.getItem('userinfo'))?.username,
+                "amount": Number(amount),
+                "transaction_id": transactionId
+            }
+            let res = await DepositDone(data);
+            if (res) {
+                if (res.data.status) {
+                    toast.success('Deposit Request Sent Successfully', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Flip,
+                    });
+                    navigate("/game")
+                }
+                else {
+                    toast.error(res.data.message, {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Flip,
+                    });
+                }
+                setLoad(false);
+            }
+            setLoad(false);
+        }else{
+            toast.error("Fill the value first", {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Flip,
+            });
+        }
     }
 
     return (
@@ -89,7 +133,6 @@ export default function Deposit() {
                                         <option>GPay</option>
                                         <option>Paytm</option>
                                     </select>
-                                    <img src="img/phonepe.png" className="method-icon phonepeLogo" />
                                 </div>
                             </div>
                             <div className="mb-3 w-100">
@@ -97,7 +140,7 @@ export default function Deposit() {
                                 <div className="position-relative">
                                     <input type="text" className="form-control ps-4" name="" value={amount}
                                         onChange={(e) => { setAmount(e.target.value) }} />
-                                    <img src="img/ruppe.png" style={{left:"4px"}} className="method-icon" />
+                                    <img src="img/ruppe.png" style={{ left: "4px" }} className="method-icon" />
                                 </div>
                             </div>
                             <div className="mb-3 w-100">
@@ -112,7 +155,7 @@ export default function Deposit() {
                             <div className="w-100 instructions-block">
                                 <div className="step-text">
                                     <strong>Step 1: </strong>
-                                    Take screenshot of QR code or copy the UPI ID
+                                    Take screenshot of QR code
                                 </div>
                                 <div className="step-text">
                                     <strong>Step 2: </strong>
@@ -132,21 +175,17 @@ export default function Deposit() {
     </div>*/}
                                 <div className="d-flex" style={{ marginTop: "30px" }}>
                                     <div className="qr-code">
-                                        {depositDetail?.QR_url && <QRCode
-                                            title="OR_CODE"
-                                            value={depositDetail?.QR_url}
-                                            size={150}
-                                        />}
+                                        <img src={depositData?.QR_url} alt='qrcode' />
                                         <button className="scanandpay-btn">Scan & Pay</button>
                                     </div>
                                 </div>
-                                <div className="d-flex" style={{ marginTop: "30px" }}>
+                                {/*<div className="d-flex" style={{ marginTop: "30px" }}>
                                     <div className="upiid-text">UPI IDs:</div>
                                     <div className="upiid-text-text">
                                         <p>{depositDetail?.upi_id} <i className="fa-solid fa-copy"></i></p>
                                         <p>{depositDetail?.upi_id} <i className="fa-solid fa-copy"></i></p>
                                     </div>
-                                </div>
+                                        </div>*/}
                                 <div className="text-ceter" onClick={handlePaymentDone}>
                                     <button className="submit-btn">Submit</button>
                                 </div>
