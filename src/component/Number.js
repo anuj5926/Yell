@@ -37,7 +37,7 @@ export default function Number() {
                 <div className='SessionGame'>
                     <div className='Period'>
                         <div className='text'>
-                            <p>Period</p>
+                            <p>Session</p>
                         </div>
                         <div className='id'>
                             <p>{sessionId}</p>

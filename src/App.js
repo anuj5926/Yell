@@ -9,11 +9,15 @@ import Deposit from "./component/Deposit";
 import DepositHistory from "./component/DepositHistory";
 import WithdrawHistory from "./component/WithdrawHistory";
 import Withdraw from "./component/Withdraw";
+import LoginP from "./component/LoginP";
+import screenOrientation from "screen-orientation";
 
 function App() {
 
+  const {direction }= screenOrientation();
   const { load, loadColor } = useContext(Context);
 
+  console.log("object",direction)
   return (
     <>
       <ToastContainer
@@ -52,7 +56,7 @@ function App() {
         />
       </div>
       <Routes>
-        <Route path="/" element={<Login/>} />
+        <Route path="/" element={ direction=== "landscape" ?<Login/>:<LoginP/>} />
         <Route path="/game" element={<GamePage />} exact />
         <Route path="/deposit/depositMoney" element={<Deposit />} exact />
         <Route path="/deposit/depositHistory" element={<DepositHistory />} exact />

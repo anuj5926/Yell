@@ -60,7 +60,30 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+<script>
+  $(document).ready(function() {
+  const loginText = $(".title-text .login");
+  const loginForm = $("form.login");
+  const loginBtn = $("label.login");
+  const signupBtn = $("label.signup");
+  const signupLink = $("form .signup-link a");
 
+  signupBtn.on("click", function() {
+    loginForm.css("marginLeft", "-50%");
+    loginText.css("marginLeft", "-50%");
+  });
+
+  loginBtn.on("click", function() {
+    loginForm.css("marginLeft", "0%");
+    loginText.css("marginLeft", "0%");
+  });
+
+  signupLink.on("click", function() {
+    signupBtn.click();
+    return false;
+  });
+});
+</script>
 </body>
 
 </html>
