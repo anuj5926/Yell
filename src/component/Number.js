@@ -3,24 +3,33 @@ import { Context } from '../Context/Context';
 
 export default function Number() {
 
-    const {sessionDetail,setNumberModal,setNumberSelected,sideBarOpen} =useContext(Context);
+    const { currentTimer,sessionDetail, setNumberModal, setNumberSelected, sideBarOpen } = useContext(Context);
     const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
     const [numberData, setNumberData] = useState([])
-    const [sessionId,setSessionId]= useState("");
+    const [sessionId, setSessionId] = useState("");
+    const [min,setMin]=useState(0)
+    const [sec,setSec]=useState(0)
 
     useEffect(() => {
         if (auth_token && Object.keys(sessionDetail).length > 0) {
-            setNumberData(sessionDetail?.session_data?.bet_numbers_position)
-            setSessionId(sessionDetail?.session_data?.session_id)
+            setNumberData(sessionDetail?.bet_numbers)
+            setSessionId(sessionDetail?.current_session_id)
         }
-    },[sessionDetail]);
+    }, [sessionDetail]);
 
-    const handleClickNumber=(number)=>{
-       if(!sideBarOpen){
-           setNumberSelected(number);
-           setNumberModal(true);
-       }
+    const handleClickNumber = (number) => {
+        if (!sideBarOpen) {
+            setNumberSelected(number);
+            setNumberModal(true);
+        }
     }
+
+    useEffect(()=>{
+        if(Object.keys(currentTimer).length> 0){
+            setMin(currentTimer?.remaining_minutes)
+            setSec(currentTimer?.remaining_seconds)
+        }
+    },[currentTimer]);
 
     return (
         <>
@@ -41,7 +50,7 @@ export default function Number() {
                         <div className='Time'>
                             <div className='Minutes'>
                                 <div className='Number'>
-                                    <p>0</p>
+                                    <p>{min < 10 ?`0${min}`:min}</p>
                                 </div>
                                 <div className='text'>
                                     <p>MINUTES</p>
@@ -49,7 +58,7 @@ export default function Number() {
                             </div>
                             <div className='Seconds'>
                                 <div className='Number'>
-                                    <p>55</p>
+                                    <p>{sec < 10 ?`0${sec}`:sec}</p>
                                 </div>
                                 <div className='text'>
                                     <p>SECONDS</p>
@@ -63,7 +72,7 @@ export default function Number() {
                     <div className='allNumber'>
                         {numberData?.map((ele, i) => {
                             return (
-                                <div key={i} className='Numberdiv' onClick={()=>handleClickNumber(ele)} >
+                                <div key={i} className='Numberdiv' onClick={() => handleClickNumber(ele)} >
                                     {ele}
                                 </div>
                             )

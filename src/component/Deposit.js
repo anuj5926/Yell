@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../Context/Context';
 import DepositCss from '../css/DepositCss';
-import QRCode from 'react-qr-code';
 import { DepositDone } from '../Api/DepositDone';
 import { Flip, toast } from 'react-toastify';
 import { GetDeposit } from '../Api/GetDeposit';

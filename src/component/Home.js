@@ -6,7 +6,7 @@ export default function Home() {
 
   const navigate = useNavigate();
 
-  const { setSideBarOpen } = useContext(Context)
+  const { setSideBarOpen, socket } = useContext(Context)
   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const [isOpen, setIsOpen] = useState(false)
@@ -14,6 +14,7 @@ export default function Home() {
   const [isWithdrawOpen, setIsWithdrawOpen] = useState(false)
 
   const handleLogout = () => {
+    socket.disconnect();
     localStorage.removeItem('userinfo');
     navigate('/');
   }
@@ -66,21 +67,21 @@ export default function Home() {
             <hr className='seprateSidebar'></hr>
             <ul>
               <li>
-                <a className='deposit' onClick={()=>setIsDepositOpen(!isDepositOpen)} >
+                <a className='deposit' onClick={() => setIsDepositOpen(!isDepositOpen)} >
                   <span className="icon"><i className="fa-solid fa-wallet"></i></span>
                   <span className="item">Deposit</span>
                 </a>
-                <div className="dropdown-container" style={{display:isDepositOpen?"block":"none"}}>
-                  <Link to ="/deposit/depositMoney" >Deposit Money</Link>
+                <div className="dropdown-container" style={{ display: isDepositOpen ? "block" : "none" }}>
+                  <Link to="/deposit/depositMoney" >Deposit Money</Link>
                   <Link to="/deposit/depositHistory">Despoit History</Link>
                 </div>
               </li>
               <li>
-                <a className='withdraw' onClick={()=>setIsWithdrawOpen(!isWithdrawOpen)}>
+                <a className='withdraw' onClick={() => setIsWithdrawOpen(!isWithdrawOpen)}>
                   <span className="icon"><i className="fa-solid fa-indian-rupee-sign"></i></span>
                   <span className="item">Withdraw</span>
                 </a>
-                <div className="dropdown-container" style={{display:isWithdrawOpen?"block":"none"}}>
+                <div className="dropdown-container" style={{ display: isWithdrawOpen ? "block" : "none" }}>
                   <Link to="/withdraw/withdrawMoney">Withdraw Money</Link>
                   <Link to="/withdraw/withdrawHistory">Withdraw History</Link>
                 </div>

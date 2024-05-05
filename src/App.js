@@ -52,7 +52,7 @@ function App() {
         />
       </div>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login/>} />
         <Route path="/game" element={<GamePage />} exact />
         <Route path="/deposit/depositMoney" element={<Deposit />} exact />
         <Route path="/deposit/depositHistory" element={<DepositHistory />} exact />
