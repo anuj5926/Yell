@@ -39,7 +39,7 @@ export default function Withdraw() {
                 <label className="form-label">Amount (Min 100)</label>
                 <div className="position-relative">
                   <input type="text" className="form-control ps-4" name="" />
-                  <img src="img/ruppe.png" style={{ left: "4px" }} className="method-icon" />
+                  <img src="/img/ruppe.png" style={{ left: "4px" }} className="method-icon" />
                 </div>
               </div>
 
