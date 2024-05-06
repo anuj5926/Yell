@@ -135,7 +135,7 @@ export default function Deposit() {
                                 </div>
                             </div>
                             <div className="mb-3 w-100">
-                                <label className="form-label">Amount</label>
+                                <label className="form-label">Amount (Min 10)</label>
                                 <div className="position-relative">
                                     <input type="text" className="form-control ps-4" name="" value={amount}
                                         onChange={(e) => { setAmount(e.target.value) }} />

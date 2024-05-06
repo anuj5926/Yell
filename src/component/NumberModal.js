@@ -9,7 +9,7 @@ export default function NumberModal() {
     const [betAmount, setBetAmount] = useState(10);
 
     useEffect(() => {
-        if (Number(betAmount) === 0) {
+        if (Number(betAmount) < 10) {
             setBetAmount(10);
         }
     }, [betAmount])
@@ -75,7 +75,7 @@ export default function NumberModal() {
                     </h2>
                     <label htmlFor="betAmount">Betting amount:</label>
                     <div className="amount-container">
-                        <button className="btn btn-decrease" onClick={() => { setBetAmount(betAmount - 10) }}>
+                        <button className="Numberbtn btn-decrease" onClick={() => { setBetAmount(betAmount - 10) }}>
                             <i className="fas fa-minus" />
                         </button>
                         <input
@@ -85,18 +85,18 @@ export default function NumberModal() {
                             value={betAmount}
                             onChange={(e) => { setBetAmount(e.target.value) }}
                         />
-                        <button className="btn btn-increase" onClick={() => { setBetAmount(betAmount + 10) }}>
+                        <button className="Numberbtn btn-increase" onClick={() => { setBetAmount(betAmount + 10) }}>
                             <i className="fas fa-plus" />
                         </button>
                     </div>
                     <div className="preset-amounts">
-                        <button className="btn btn-amount" onClick={() => setBetAmount(50)}>50</button>
-                        <button className="btn btn-amount" onClick={() => setBetAmount(100)}>100</button>
-                        <button className="btn btn-amount" onClick={() => setBetAmount(200)}>200</button>
-                        <button className="btn btn-amount" onClick={() => setBetAmount(500)}>500</button>
+                        <button className="Numberbtn btn-amount" onClick={() => setBetAmount(50)}>50</button>
+                        <button className="Numberbtn btn-amount" onClick={() => setBetAmount(100)}>100</button>
+                        <button className="Numberbtn btn-amount" onClick={() => setBetAmount(200)}>200</button>
+                        <button className="Numberbtn btn-amount" onClick={() => setBetAmount(500)}>500</button>
                     </div>
                     <div>
-                        <button className="btn Placebet" onClick={() => { handlePlacebet() }}>Place your Bet</button>
+                        <button className="Numberbtn Placebet" onClick={() => { handlePlacebet() }}>Place your Bet</button>
                     </div>
                 </div>
             </div>}
