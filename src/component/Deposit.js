@@ -139,7 +139,7 @@ export default function Deposit() {
                                 <div className="position-relative">
                                     <input type="text" className="form-control ps-4" name="" value={amount}
                                         onChange={(e) => { setAmount(e.target.value) }} />
-                                    <img src="img/ruppe.png" style={{ left: "4px" }} className="method-icon" />
+                                    <img src="/img/ruppe.png" style={{ left: "4px" }} className="method-icon" />
                                 </div>
                             </div>
                             <div className="mb-3 w-100">
