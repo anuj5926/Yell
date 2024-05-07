@@ -10,14 +10,14 @@ export default function Deposit() {
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const { setLoad, setLoadColor } = useContext(Context);
+    const { setLoad, setLoadColor,numberModal,sideBarOpen } = useContext(Context);
 
     const [amount, setAmount] = useState("")
     const [transactionId, setTransactionId] = useState("")
     const [depositData, setDepositData] = useState("")
 
     useEffect(() => {
-        if (pathname === "/deposit/depositMoney") {
+        if (pathname === "/deposit/depositMoney" && !numberModal && !sideBarOpen) {
             handleDeposit();
         }
     }, [pathname])

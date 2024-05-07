@@ -10,9 +10,9 @@ export default function WithdrawHistory() {
     const navigate = useNavigate();
 
     const [withdrawHistoryData, setWithdrawHistoryData] = useState([]);
-    const { setLoad, setLoadColor } = useContext(Context);
+    const { setLoad, setLoadColor,numberModal,sideBarOpen } = useContext(Context);
     useEffect(() => {
-        if (pathname === "/deposit/depositHistory") {
+        if (pathname === "/deposit/depositHistory" && !numberModal && !sideBarOpen) {
             handleDepositHistory();
         }
     }, [pathname])

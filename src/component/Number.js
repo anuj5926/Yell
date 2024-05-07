@@ -31,6 +31,7 @@ export default function Number() {
         }
     },[currentTimer]);
 
+
     return (
         <>
             <div className='WholeNumberComponent'>

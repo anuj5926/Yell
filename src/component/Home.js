@@ -5,6 +5,7 @@ import { Context } from '../Context/Context';
 export default function Home() {
 
   const navigate = useNavigate();
+  const {pathname} = useLocation();
 
   const { setSideBarOpen, socket } = useContext(Context)
   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
@@ -37,7 +38,6 @@ export default function Home() {
     setSideBarOpen(isOpen);
   }, [isOpen]);
 
-
   return (
     <>
       <div className='content'>
@@ -67,13 +67,13 @@ export default function Home() {
             <hr className='seprateSidebar'></hr>
             <ul>
               <li>
-                <a className='deposit' onClick={() => setIsDepositOpen(!isDepositOpen)} >
+                <a className='deposit' onClick={() => {setIsDepositOpen(!isDepositOpen)}} >
                   <span className="icon"><i className="fa-solid fa-wallet"></i></span>
                   <span className="item">Deposit</span>
                 </a>
                 <div className="dropdown-container" style={{ display: isDepositOpen ? "block" : "none" }}>
-                  <Link to="/deposit/depositMoney" >Deposit Money</Link>
-                  <Link to="/deposit/depositHistory">Despoit History</Link>
+                  <Link to="/deposit/depositMoney" onClick={()=>setSideBarOpen(false)} >Deposit Money</Link>
+                  <Link to="/deposit/depositHistory" onClick={()=>setSideBarOpen(false)}>Despoit History</Link>
                 </div>
               </li>
               <li>
@@ -82,8 +82,8 @@ export default function Home() {
                   <span className="item">Withdraw</span>
                 </a>
                 <div className="dropdown-container" style={{ display: isWithdrawOpen ? "block" : "none" }}>
-                  <Link to="/withdraw/withdrawMoney">Withdraw Money</Link>
-                  <Link to="/withdraw/withdrawHistory">Withdraw History</Link>
+                  <Link to="/withdraw/withdrawMoney" onClick={()=>setSideBarOpen(false)}>Withdraw Money</Link>
+                  <Link to="/withdraw/withdrawHistory" onClick={()=>setSideBarOpen(false)}>Withdraw History</Link>
                 </div>
               </li>
               <li>

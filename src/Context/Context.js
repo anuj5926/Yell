@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { SessionDetail } from '../Api/SessionDetail';
 import io from 'socket.io-client';
-import {  useLocation, useNavigate } from 'react-router-dom';
+import {  useBlocker, useLocation, useNavigate } from 'react-router-dom';
 let socket = undefined;
 
 const Context = createContext();
@@ -47,6 +47,15 @@ const ContextProvider = ({ children }) => {
     const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
     if (!auth_token) {
       navigate('/');
+    }
+
+    if(pathname !== '/game' && numberModal){
+      setNumberModal(false);
+      navigate('/game');
+    }
+    if(pathname !== '/game' && sideBarOpen){
+      setSideBarOpen(false);
+      navigate('/game');
     }
   }, [pathname,auth_token])
 

@@ -5,7 +5,7 @@ import { Flip, toast } from 'react-toastify';
 
 export default function NumberModal() {
 
-    const { sessionDetail, numberModal, numberSelected, setNumberModal,setLoad,setLoadColor, setNumberSelected } = useContext(Context);
+    const { sessionDetail, numberModal, numberSelected, setNumberModal, setLoad, setLoadColor, setNumberSelected } = useContext(Context);
     const [betAmount, setBetAmount] = useState(10);
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export default function NumberModal() {
                 setLoad(false);
             }
             else {
-                toast.error(res.message, {
+                toast.error(res.data.message, {
                     position: "top-right",
                     autoClose: 1500,
                     hideProgressBar: false,
@@ -57,6 +57,9 @@ export default function NumberModal() {
                     theme: "colored",
                     transition: Flip,
                 });
+                setBetAmount(10);
+                setNumberModal(false);
+                setNumberSelected("");
                 setLoad(false);
             }
         }
