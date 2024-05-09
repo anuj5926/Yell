@@ -29,7 +29,10 @@ const ContextProvider = ({ children }) => {
       if (auth_token) {
         setLoad(true);
         setLoadColor("#434343");
-        let res = await SessionDetail()
+        let data = {
+          username :JSON.parse(localStorage.getItem('userinfo'))?.username
+        }
+        let res = await SessionDetail(data)
         if (res) {
           setLoad(false);
           setSessionDetail(res.data);

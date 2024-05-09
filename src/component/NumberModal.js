@@ -19,8 +19,8 @@ export default function NumberModal() {
         setLoad(true);
         setLoadColor("#434343");
         let data = {
-            "player_id": JSON.parse(localStorage.getItem("userinfo")).username,
-            "session_id": sessionDetail?.session_data?.session_id,
+            "username": JSON.parse(localStorage.getItem("userinfo")).username,
+            "session_id": sessionDetail?.current_session_id,
             "amount": betAmount,
             "position_number": numberSelected,
         }
