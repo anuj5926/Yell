@@ -9,7 +9,7 @@ import { Context } from '../Context/Context';
 
 export default function Login() {
 
-    const { setLoad ,setLoadColor} = useContext(Context);
+    const {wallet, setWallet, setLoad ,setLoadColor} = useContext(Context);
 
     const navigate = useNavigate();
 
@@ -83,6 +83,7 @@ export default function Login() {
             if (res) {
                 if (res.data.status) {
                     localStorage.setItem("userinfo", JSON.stringify(res.data.data));
+                    setWallet(res.data.data.wallet);
                     navigate("/game")
                     toast.success('User Registered Successfully', {
                         position: "top-right",
@@ -158,6 +159,7 @@ export default function Login() {
             if (res) {
                 if (res.data.status) {
                     localStorage.setItem("userinfo", JSON.stringify(res.data.data));
+                    setWallet(res.data.data.wallet);
                     toast.success('User Login Successfully', {
                         position: "top-right",
                         autoClose: 1500,

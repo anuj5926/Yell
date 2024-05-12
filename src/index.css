@@ -1424,3 +1424,7 @@ form .btn1 input[type="submit"] {
   font-weight: 500;
   cursor: pointer;
 }
+
+.content{
+  background-color: #ffff;
+}

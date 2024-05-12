@@ -7,7 +7,7 @@ export default function Home() {
   const navigate = useNavigate();
   const {pathname} = useLocation();
 
-  const { setSideBarOpen, socket } = useContext(Context)
+  const {wallet, setWallet, setSideBarOpen, socket } = useContext(Context)
   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const [isOpen, setIsOpen] = useState(false)
@@ -15,7 +15,7 @@ export default function Home() {
   const [isWithdrawOpen, setIsWithdrawOpen] = useState(false)
 
   const handleLogout = () => {
-    socket.disconnect();
+    socket?.disconnect();
     localStorage.removeItem('userinfo');
     navigate('/');
   }
@@ -54,7 +54,7 @@ export default function Home() {
                 </a>
               </div>
               <div className='gameName'>Wingo</div>
-              <div><i className="fa-solid fa-wallet" style={{ color: "white" }}></i> <span style={{ color: "white", textAlign: "center" }}>{userInfo?.wallet}</span></div>
+              <div><i className="fa-solid fa-wallet" style={{ color: "white" }}></i> <span style={{ color: "white", textAlign: "center" }}>{wallet}</span></div>
             </div>
 
           </div>
@@ -62,7 +62,7 @@ export default function Home() {
             <div className="profile">
               <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture" />
               <h3>{userInfo?.name}</h3>
-              <p><i className="fa-solid fa-wallet" style={{ color: "white" }}></i>{" " + userInfo?.wallet}</p>
+              <p><i className="fa-solid fa-wallet" style={{ color: "white" }}></i>{" " + wallet}</p>
             </div>
             <hr className='seprateSidebar'></hr>
             <ul>

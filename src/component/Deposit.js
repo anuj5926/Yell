@@ -57,13 +57,14 @@ export default function Deposit() {
     }
 
     const handlePaymentDone = async () => {
-        if (transactionId !== "" && amount > 0) {
+        if (transactionId !== "" && amount.length > 0) {
             setLoad(true);
             setLoadColor("#434343");
             let data = {
                 "username": JSON.parse(localStorage.getItem('userinfo'))?.username,
                 "amount": Number(amount),
-                "transaction_id": transactionId
+                "transaction_id": transactionId,
+                "payment_gateway": "upi-QR"
             }
             let res = await DepositDone(data);
             if (res) {
@@ -135,7 +136,7 @@ export default function Deposit() {
                                 </div>
                             </div>
                             <div className="mb-3 w-100">
-                                <label className="form-label">Amount (Min 10)</label>
+                                <label className="form-label">Amount (Min {depositData?.min_deposit})</label>
                                 <div className="position-relative">
                                     <input type="text" className="form-control ps-4" name="" value={amount}
                                         onChange={(e) => { setAmount(e.target.value) }} />

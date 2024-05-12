@@ -5,7 +5,7 @@ import { Flip, toast } from 'react-toastify';
 
 export default function NumberModal() {
 
-    const { sessionDetail, numberModal, numberSelected, setNumberModal, setLoad, setLoadColor, setNumberSelected } = useContext(Context);
+    const {wallet, setWallet, sessionDetail, numberModal, numberSelected, setNumberModal, setLoad, setLoadColor, setNumberSelected } = useContext(Context);
     const [betAmount, setBetAmount] = useState(10);
 
     useEffect(() => {
@@ -16,54 +16,69 @@ export default function NumberModal() {
 
 
     const handlePlacebet = async () => {
-        setLoad(true);
-        setLoadColor("#434343");
-        let data = {
-            "username": JSON.parse(localStorage.getItem("userinfo")).username,
-            "session_id": sessionDetail?.current_session_id,
-            "amount": betAmount,
-            "position_number": numberSelected,
-        }
-
-        let res = await BetPlace(data);
-        if (res) {
-            console.log(res.data)
-            if (res.data.status) {
-                toast.success('Bet Placed Successfully', {
-                    position: "top-right",
-                    autoClose: 1500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Flip,
-                });
-                setBetAmount(10);
-                setNumberModal(false);
-                setNumberSelected("");
-                setLoad(false);
+        if(betAmount < wallet){
+            setLoad(true);
+            setLoadColor("#434343");
+            let data = {
+                "username": JSON.parse(localStorage.getItem("userinfo")).username,
+                "session_id": sessionDetail?.current_session_id,
+                "amount": betAmount,
+                "position_number": numberSelected,
             }
-            else {
-                toast.error(res.data.message, {
-                    position: "top-right",
-                    autoClose: 1500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Flip,
-                });
-                setBetAmount(10);
-                setNumberModal(false);
-                setNumberSelected("");
-                setLoad(false);
+    
+            let res = await BetPlace(data);
+            if (res) {
+                console.log(res.data)
+                if (res.data.status) {
+                    toast.success('Bet Placed Successfully', {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Flip,
+                    });
+                    setBetAmount(10);
+                    setNumberModal(false);
+                    setNumberSelected("");
+                    setLoad(false);
+                }
+                else {
+                    toast.error(res.data.message, {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Flip,
+                    });
+                    setBetAmount(10);
+                    setNumberModal(false);
+                    setNumberSelected("");
+                    setLoad(false);
+                }
             }
+            setLoad(false);
         }
-        setLoad(false);
+        else{
+            toast.error("Low Balance", {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Flip,
+            });
+        }
     }
 
     return (

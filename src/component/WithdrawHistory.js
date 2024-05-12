@@ -12,12 +12,12 @@ export default function WithdrawHistory() {
     const [withdrawHistoryData, setWithdrawHistoryData] = useState([]);
     const { setLoad, setLoadColor,numberModal,sideBarOpen } = useContext(Context);
     useEffect(() => {
-        if (pathname === "/deposit/depositHistory" && !numberModal && !sideBarOpen) {
-            handleDepositHistory();
+        if (pathname === "/deposit/withdrawHistory" && !numberModal && !sideBarOpen) {
+            handleWithdrawHistory();
         }
     }, [pathname])
 
-    const handleDepositHistory = async () => {
+    const handleWithdrawHistory = async () => {
         setLoad(true);
         setLoadColor("#434343");
         let data = {
@@ -57,7 +57,7 @@ export default function WithdrawHistory() {
                                     <i className="fa-solid fa-chevron-left" onClick={()=>navigate("/game")}></i>
                                 </a>
                             </div>
-                            <div className='gameName'>Deposit History</div>
+                            <div className='gameName'>Withdraw History</div>
                             <div><i className="fa-solid fa-wallet" style={{ color: "white" }}></i> <span style={{ color: "white", textAlign: "center" }}>{ }</span></div>
                         </div>
 

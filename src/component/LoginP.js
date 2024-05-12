@@ -5,6 +5,7 @@ import { Flip, toast } from 'react-toastify';
 import { SignUp } from '../Api/SignUp';
 import { SignIn } from '../Api/SignIn';
 import { LoginPagePBody, LoginPagePHtml } from '../css/LoginPageP';
+import jQuery from 'jquery';
 
 export default function LoginP() {
 
@@ -243,7 +244,7 @@ export default function LoginP() {
                                 <div className="slider-tab"></div>
                             </div>
                             <div className="form-inner">
-                                <form action="#" className="login">
+                                <form action="#" className="login" style={{marginLeft:!ischecked?"-50%":"0%"}}>
                                     <div className="field">
                                         <input type="text" placeholder="Username" value={signInData.username} onChange={(e) => { handleChangeSignIn(e, "username") }} required />
                                     </div>
@@ -259,7 +260,7 @@ export default function LoginP() {
                                 </form>
                                 <form action="#" className="signup">
                                     <div className="field">
-                                        <input type="password" placeholder="Name" value={signUpData.name} onChange={(e) => { handleChangeSignUp(e, "name") }} required />
+                                        <input type="text" placeholder="Name" value={signUpData.name} onChange={(e) => { handleChangeSignUp(e, "name") }} required />
                                     </div>
                                     <div className="field">
                                         <input type="text" placeholder="Username" value={signUpData.username} onChange={(e) => { handleChangeSignUp(e, "username") }} required />

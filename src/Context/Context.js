@@ -19,6 +19,7 @@ const ContextProvider = ({ children }) => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [currentTimer, setCurrentTimer] = useState({});
+  const [wallet, setWallet] = useState(0);
   const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
 
   const {pathname} = useLocation();
@@ -93,7 +94,8 @@ const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         setUserInfo, userInfo, setLoad, load, sessionDetail,setLoadColor,loadColor,setNumberModal,numberModal,
-        setNumberSelected,numberSelected,setDepositModal,depositModal,setSideBarOpen,sideBarOpen,currentTimer,socket
+        setNumberSelected,numberSelected,setDepositModal,depositModal,setSideBarOpen,sideBarOpen,currentTimer,socket,wallet,
+         setWallet
       }}
     >
       {children}
