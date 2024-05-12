@@ -1427,4 +1427,5 @@ form .btn1 input[type="submit"] {
 
 .content{
   background-color: #ffff;
+  position: relative;
 }
