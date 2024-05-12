@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { SessionDetail } from '../Api/SessionDetail';
 import io from 'socket.io-client';
-import {  useBlocker, useLocation, useNavigate } from 'react-router-dom';
+import { useBlocker, useLocation, useNavigate } from 'react-router-dom';
 let socket = undefined;
 
 const Context = createContext();
@@ -12,7 +12,7 @@ const ContextProvider = ({ children }) => {
   const [load, setLoad] = useState(false)
   const [numberModal, setNumberModal] = useState(false)
   const [depositModal, setDepositModal] = useState(false)
-  const [numberSelected,setNumberSelected] = useState("")
+  const [numberSelected, setNumberSelected] = useState("")
   const [loadColor, setLoadColor] = useState("")
   const [sessionDetail, setSessionDetail] = useState({})
   const [sessionDetailStatus, setSessionDetailStatus] = useState(false)
@@ -22,7 +22,7 @@ const ContextProvider = ({ children }) => {
   const [wallet, setWallet] = useState(0);
   const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
 
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,22 +31,23 @@ const ContextProvider = ({ children }) => {
         setLoad(true);
         setLoadColor("#434343");
         let data = {
-          username :JSON.parse(localStorage.getItem('userinfo'))?.username
+          username: JSON.parse(localStorage.getItem('userinfo'))?.username
         }
         let res = await SessionDetail(data)
         if (res.data.status) {
           setLoad(false);
           setSessionDetail(res.data);
           setSessionDetailStatus(true);
-        }else{
-           if(res.data.message=== "token not belonging to the user"){
+        } else {
+          if (res.data.message === "token not belonging to the user") {
             socket?.disconnect();
-    localStorage.removeItem('userinfo');
-    navigate('/');
-           }
+            setLoad(false);
+            localStorage.removeItem('userinfo');
+            navigate('/');
+          }
         }
       }
-      else{
+      else {
         setSessionDetail({})
       }
     }
@@ -59,15 +60,15 @@ const ContextProvider = ({ children }) => {
       navigate('/');
     }
 
-    if(pathname !== '/game' && numberModal){
+    if (pathname !== '/game' && numberModal) {
       setNumberModal(false);
       navigate('/game');
     }
-    if(pathname !== '/game' && sideBarOpen){
+    if (pathname !== '/game' && sideBarOpen) {
       setSideBarOpen(false);
       navigate('/game');
     }
-  }, [pathname,auth_token])
+  }, [pathname, auth_token])
 
   useEffect(() => {
     if (auth_token && sessionDetailStatus) {
@@ -80,18 +81,18 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (socketConnected) {
-      
+
       socket.emit('newUserJoin', sessionDetail?.session_data?.session_id);
 
-      socket.on("session_details", (data)=>{
-        console.log("session_details",data)
+      socket.on("session_details", (data) => {
+        console.log("session_details", data)
       });
-      socket.on("current_Timer", (data)=>{
-        console.log("current_Timer",data)
+      socket.on("current_Timer", (data) => {
+        console.log("current_Timer", data)
         setCurrentTimer(data);
       });
-      socket.on("session_result", (data)=>{
-        console.log("session_result",data)
+      socket.on("session_result", (data) => {
+        console.log("session_result", data)
       });
     }
   }, [socket, socketConnected])
@@ -99,9 +100,9 @@ const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        setUserInfo, userInfo, setLoad, load, sessionDetail,setLoadColor,loadColor,setNumberModal,numberModal,
-        setNumberSelected,numberSelected,setDepositModal,depositModal,setSideBarOpen,sideBarOpen,currentTimer,socket,wallet,
-         setWallet
+        setUserInfo, userInfo, setLoad, load, sessionDetail, setLoadColor, loadColor, setNumberModal, numberModal,
+        setNumberSelected, numberSelected, setDepositModal, depositModal, setSideBarOpen, sideBarOpen, currentTimer, socket, wallet,
+        setWallet
       }}
     >
       {children}

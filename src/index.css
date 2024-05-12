@@ -395,10 +395,10 @@ tr:hover {
   background-color: #f9f9f9;
 }
 
-.midPart {
+/* .midPart {
   height: calc(100vh - 100px);
   overflow-y: auto !important;
-}
+} */
 
 @media (max-height: 692px) {
   .wrapper .sidebar ul li a {
@@ -1426,6 +1426,10 @@ form .btn1 input[type="submit"] {
 }
 
 .content{
-  background-color: #ffff;
-  position: relative;
+  background: #f5f6fa;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 111;
 }

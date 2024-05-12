@@ -7,7 +7,7 @@ export default function Home() {
   const navigate = useNavigate();
   const {pathname} = useLocation();
 
-  const {wallet, setWallet, setSideBarOpen, socket } = useContext(Context)
+  const {wallet, setWallet, setSideBarOpen, socket,setLoad } = useContext(Context)
   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
 
   const [isOpen, setIsOpen] = useState(false)
@@ -16,6 +16,7 @@ export default function Home() {
 
   const handleLogout = () => {
     socket?.disconnect();
+    setLoad(false);
     localStorage.removeItem('userinfo');
     navigate('/');
   }
