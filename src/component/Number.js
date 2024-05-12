@@ -73,9 +73,9 @@ export default function Number() {
                     <div className='allNumber'>
                         {numberData?.map((ele, i) => {
                             return (
-                                <div key={i} className='Numberdiv' onClick={() => handleClickNumber(ele)} >
+                                <button key={i} className='Numberdiv' onClick={() => handleClickNumber(ele)} disabled={min < 5} style={{backgroundColor:min < 5 && "#656666"}}>
                                     {ele}
-                                </div>
+                                </button>
                             )
                         })}
                     </div>

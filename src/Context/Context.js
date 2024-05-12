@@ -34,10 +34,16 @@ const ContextProvider = ({ children }) => {
           username :JSON.parse(localStorage.getItem('userinfo'))?.username
         }
         let res = await SessionDetail(data)
-        if (res) {
+        if (res.data.status) {
           setLoad(false);
           setSessionDetail(res.data);
           setSessionDetailStatus(true);
+        }else{
+           if(res.data.message=== "token not belonging to the user"){
+            socket?.disconnect();
+    localStorage.removeItem('userinfo');
+    navigate('/');
+           }
         }
       }
       else{
