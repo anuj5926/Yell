@@ -18,7 +18,10 @@ const ContextProvider = ({ children }) => {
   const [sessionDetailStatus, setSessionDetailStatus] = useState(false)
   const [socketConnected, setSocketConnected] = useState(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [currentTimer, setCurrentTimer] = useState({});
+  const [currentTimer, setCurrentTimer] = useState({}); 
+  const [sessionResult, setSessionResult] = useState({}); 
+  const [withdrawDetailModal, setWithdrawDetailModal] = useState({}); 
+  const [withdrawDetailModalStatus, setWithdrawDetailModalStatus] = useState(false); 
   const [wallet, setWallet] = useState(0);
   const auth_token = JSON.parse(localStorage.getItem('userinfo'))?.auth_token;
 
@@ -37,6 +40,7 @@ const ContextProvider = ({ children }) => {
         if (res.data.status) {
           setLoad(false);
           setSessionDetail(res.data);
+          setWallet(res.data.updated_wallet)
           setSessionDetailStatus(true);
         } else {
           if (res.data.message === "token not belonging to the user") {
@@ -93,6 +97,7 @@ const ContextProvider = ({ children }) => {
       });
       socket.on("session_result", (data) => {
         console.log("session_result", data)
+        setSessionResult(data);
       });
     }
   }, [socket, socketConnected])
@@ -102,7 +107,7 @@ const ContextProvider = ({ children }) => {
       value={{
         setUserInfo, userInfo, setLoad, load, sessionDetail, setLoadColor, loadColor, setNumberModal, numberModal,
         setNumberSelected, numberSelected, setDepositModal, depositModal, setSideBarOpen, sideBarOpen, currentTimer, socket, wallet,
-        setWallet
+        setWallet,sessionResult,setWithdrawDetailModalStatus,setWithdrawDetailModal,withdrawDetailModalStatus,withdrawDetailModal
       }}
     >
       {children}

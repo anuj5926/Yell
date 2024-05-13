@@ -4,6 +4,7 @@ import History from './History'
 import Number from './Number'
 import GamePageCss from '../css/GamePageCss'
 import NumberModal from './NumberModal'
+import WinningModal from './WinningModal'
 
 export default function GamePage() {
     return (
@@ -15,6 +16,7 @@ export default function GamePage() {
                     <History />
                 </div>
                 <NumberModal/>
+                <WinningModal/>
             </GamePageCss>
         </>
     )

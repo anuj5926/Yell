@@ -5,7 +5,7 @@ import { Flip, toast } from 'react-toastify';
 
 export default function NumberModal() {
 
-    const {wallet, setWallet, sessionDetail, numberModal, numberSelected, setNumberModal, setLoad, setLoadColor, setNumberSelected } = useContext(Context);
+    const { wallet, setWallet, sessionDetail, numberModal, numberSelected, setNumberModal, setLoad, setLoadColor, setNumberSelected } = useContext(Context);
     const [betAmount, setBetAmount] = useState(10);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function NumberModal() {
 
 
     const handlePlacebet = async () => {
-        if(betAmount < wallet){
+        if (betAmount < wallet) {
             setLoad(true);
             setLoadColor("#434343");
             let data = {
@@ -25,11 +25,12 @@ export default function NumberModal() {
                 "amount": betAmount,
                 "position_number": numberSelected,
             }
-    
+
             let res = await BetPlace(data);
             if (res) {
                 console.log(res.data)
                 if (res.data.status) {
+                    setWallet(res.data.updated_wallet)
                     toast.success('Bet Placed Successfully', {
                         position: "top-right",
                         autoClose: 1500,
@@ -66,7 +67,7 @@ export default function NumberModal() {
             }
             setLoad(false);
         }
-        else{
+        else {
             toast.error("Low Balance", {
                 position: "top-right",
                 autoClose: 1500,
@@ -78,6 +79,10 @@ export default function NumberModal() {
                 theme: "colored",
                 transition: Flip,
             });
+            setBetAmount(10);
+            setNumberModal(false);
+            setNumberSelected("");
+            setLoad(false);
         }
     }
 
