@@ -64,9 +64,7 @@ export default function WithdrawHistory() {
                                 </a>
                             </div>
                             <div className='gameName'>Withdraw History</div>
-                            <div><i className="fa-solid fa-wallet" style={{ color: "white" }}></i> <span style={{ color: "white", textAlign: "center" }}>{ }</span></div>
                         </div>
-
                     </div>
                 </div>
 

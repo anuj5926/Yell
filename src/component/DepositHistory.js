@@ -10,7 +10,7 @@ export default function DepositHistory() {
     const navigate = useNavigate();
 
     const [despositHistoryData, setDepositHistoryData] = useState([]);
-    const { setLoad, setLoadColor,numberModal,sideBarOpen } = useContext(Context);
+    const { setLoad, setLoadColor,numberModal,sideBarOpen,wallet } = useContext(Context);
     useEffect(() => {
         if (pathname === "/deposit/depositHistory" && !numberModal && !sideBarOpen ) {
             handleDepositHistory();
@@ -58,9 +58,7 @@ export default function DepositHistory() {
                                 </a>
                             </div>
                             <div className='gameName'>Deposit History</div>
-                            <div><i className="fa-solid fa-wallet" style={{ color: "white" }}></i> <span style={{ color: "white", textAlign: "center" }}>{ }</span></div>
                         </div>
-
                     </div>
                 </div>
 

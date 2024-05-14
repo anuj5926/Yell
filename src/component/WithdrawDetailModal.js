@@ -5,7 +5,6 @@ export default function WithdrawDetailModal() {
 
     const { withdrawDetailModalStatus, withdrawDetailModal, setWithdrawDetailModalStatus } = useContext(Context)
 
-    console.log(withdrawDetailModalStatus, "setWithdrawDetailModalStatus")
     return (
         <>
             {withdrawDetailModalStatus && <div class="modal-overlay">

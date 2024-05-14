@@ -94,10 +94,10 @@ export default function Home() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <Link to="/helpSupport" onClick={()=>setSideBarOpen(false)}>
                   <span className="icon"><i className="fa-solid fa-handshake-angle"></i></span>
                   <span className="item">Help and Support</span>
-                </a>
+                </Link>
               </li>
               <li className='LogoutButton'
                 onClick={handleLogout}

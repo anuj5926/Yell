@@ -11,6 +11,7 @@ import WithdrawHistory from "./component/WithdrawHistory";
 import Withdraw from "./component/Withdraw";
 import LoginP from "./component/LoginP";
 import screenOrientation from "screen-orientation";
+import HelpSupport from "./component/HelpSupport";
 
 function App() {
 
@@ -56,12 +57,13 @@ function App() {
         />
       </div>
       <Routes>
-        <Route path="/" element={ direction=== "landscape" ?<Login/>:<LoginP/>} />
+        <Route path="/" element={ direction === "landscape" ?<Login/>:<LoginP/>} />
         <Route path="/game" element={<GamePage />} exact />
         <Route path="/deposit/depositMoney" element={<Deposit />} exact />
         <Route path="/deposit/depositHistory" element={<DepositHistory />} exact />
         <Route path="/withdraw/withdrawMoney" element={<Withdraw />} exact />
         <Route path="/withdraw/withdrawHistory" element={<WithdrawHistory />} exact />
+        <Route path="/helpSupport" element={<HelpSupport />} exact />
       </Routes>
     </>
   );
