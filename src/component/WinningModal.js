@@ -3,25 +3,40 @@ import { Context } from '../Context/Context'
 
 export default function WinningModal() {
 
-    const {sessionResult} =useContext(Context)
-    const [result ,setResult] = useState(false);
+  const { sessionResult } = useContext(Context)
+  const [result, setResult] = useState(false);
 
-    useEffect(()=>{
-      if(Object.keys(sessionResult).length > 0 ){
-        console.log(sessionResult)
-        setResult(true)
-      }
-    },[sessionResult])
-    
+  useEffect(() => {
+    if (Object.keys(sessionResult).length > 0) {
+      console.log(sessionResult)
+      setResult(true)
+    }
+  }, [sessionResult])
+
   return (
     <>
-    {result && <div class="modal-overlay">
-    <div class="modal-container">
-      <h2 class="modal-heading">Winning Number</h2>
-      <div class="number-display">{sessionResult?.winning_number}</div>
-      <button class="close-button" onClick={()=>setResult(false)}>Close</button>
-    </div>
-  </div>}
-  </>
+      {result &&
+        <div class="modal-overlay">
+        <div class="modal1">
+          <div class="modal1-content">
+            <div class="victory-banner">
+              <span class="victory-text">Winning Number</span>
+            </div>
+            <div class="score">
+              <span class="score-value">{sessionResult?.winning_number}</span>
+            </div>
+            <button class="close-button" onClick={() => setResult(false)}>Close</button>
+          </div>
+          <div class="background-balls">
+            <div class="ball red"></div>
+            <div class="ball blue"></div>
+            <div class="ball yellow"></div>
+            <div class="ball red2"></div>
+            <div class="ball blue2"></div>
+          </div>
+        </div>
+        </div>
+      }
+    </>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../Context/Context';
+import { Flip, toast } from 'react-toastify';
 
 export default function Number() {
 
@@ -18,6 +19,20 @@ export default function Number() {
     }, [sessionDetail]);
 
     const handleClickNumber = (number) => {
+        if(min < 5){
+            toast.error("Betting Time Over Wait for Next Session", {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Flip,
+            });
+            return ;
+        }
         if (!sideBarOpen) {
             setNumberSelected(number);
             setNumberModal(true);
@@ -73,7 +88,7 @@ export default function Number() {
                     <div className='allNumber'>
                         {numberData?.map((ele, i) => {
                             return (
-                                <button key={i} className='Numberdiv' onClick={() => handleClickNumber(ele)} disabled={min < 5} style={{backgroundColor:min < 5 && "#656666"}}>
+                                <button key={i} className='Numberdiv' onClick={() => handleClickNumber(ele)} style={{backgroundColor:min < 5 && "#656666" ,border :min<5 &&"none"}}>
                                     {ele}
                                 </button>
                             )
