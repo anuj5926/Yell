@@ -88,10 +88,10 @@ export default function Home() {
                 </div>
               </li>
               <li>
-                <a href="#">
+                <Link to="/betHistory" onClick={()=>setSideBarOpen(false)}>
                   <span className="icon"><i className="fa-brands fa-searchengin"></i></span>
                   <span className="item">History</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <Link to="/helpSupport" onClick={()=>setSideBarOpen(false)}>

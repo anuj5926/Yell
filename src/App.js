@@ -12,6 +12,7 @@ import Withdraw from "./component/Withdraw";
 import LoginP from "./component/LoginP";
 import screenOrientation from "screen-orientation";
 import HelpSupport from "./component/HelpSupport";
+import BetHistory from "./component/BetHistory";
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/withdraw/withdrawMoney" element={<Withdraw />} exact />
         <Route path="/withdraw/withdrawHistory" element={<WithdrawHistory />} exact />
         <Route path="/helpSupport" element={<HelpSupport />} exact />
+        <Route path="/betHistory" element={<BetHistory/>} exact />
       </Routes>
     </>
   );

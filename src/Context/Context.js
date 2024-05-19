@@ -93,6 +93,12 @@ const ContextProvider = ({ children }) => {
       socket.on("session_details", (data) => {
         console.log("session_details", data)
       });
+      socket.on("depositConfirm", (data) => {
+        console.log("depositConfirm", data)
+      });
+      socket.on("withdrawConfirm", (data) => {
+        console.log("withdrawConfirm", data)
+      });
       socket.on("current_Timer", (data) => {
         console.log("current_Timer", data)
         setCurrentTimer(data);
