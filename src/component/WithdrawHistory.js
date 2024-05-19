@@ -82,7 +82,7 @@ export default function WithdrawHistory() {
                             {withdrawHistoryData?.map((ele, i) => {
                                 return (
                                     <tr key={i}>
-                                        <td onClick={()=>handleWithdrawDetail(ele)}>11111111111111111111</td>
+                                        <td onClick={()=>handleWithdrawDetail(ele)}>{ele?.transaction_id}</td>
                                         <td>{ele?.withdraw_amount}</td>
                                         <td>{ele?.remarks}</td>
                                         <td>

@@ -1532,7 +1532,7 @@ form .btn1 input[type="submit"] {
   font-weight:600;
 }
 
-.close-button {
+.close-button1 {
   background-color: #ffeb3b;
   border: none;
   border-radius: 5px;
@@ -1544,7 +1544,7 @@ form .btn1 input[type="submit"] {
   transition: background-color 0.3s;
 }
 
-.close-button:hover {
+.close-button1:hover {
   background-color: #f1c40f;
 }
 
