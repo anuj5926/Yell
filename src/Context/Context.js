@@ -113,7 +113,7 @@ const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        setUserInfo, userInfo, setLoad, load, sessionDetail, setLoadColor, loadColor, setNumberModal, numberModal,
+        setSessionResult,setUserInfo, userInfo, setLoad, load, sessionDetail, setLoadColor, loadColor, setNumberModal, numberModal,
         setNumberSelected, numberSelected, setDepositModal, depositModal, setSideBarOpen, sideBarOpen, currentTimer, socket, wallet,
         setWallet, sessionResult, setWithdrawDetailModalStatus, setWithdrawDetailModal, withdrawDetailModalStatus, withdrawDetailModal
       }}

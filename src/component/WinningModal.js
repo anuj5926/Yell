@@ -3,7 +3,7 @@ import { Context } from '../Context/Context'
 
 export default function WinningModal() {
 
-  const { sessionResult } = useContext(Context)
+  const { sessionResult,setSessionResult } = useContext(Context)
   const [result, setResult] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function WinningModal() {
             <div class="score">
               <span class="score-value">{sessionResult?.winning_number}</span>
             </div>
-            <button class="close-button" onClick={() => setResult(false)}>Close</button>
+            <button class="close-button1" onClick={() => {setResult(false);setSessionResult({})}}>Close</button>
           </div>
           <div class="background-balls">
             <div class="ball red"></div>
