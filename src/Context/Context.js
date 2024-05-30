@@ -95,9 +95,11 @@ const ContextProvider = ({ children }) => {
       });
       socket.on("depositConfirm", (data) => {
         console.log("depositConfirm", data)
+        setWallet(data?.wallet)
       });
       socket.on("withdrawConfirm", (data) => {
         console.log("withdrawConfirm", data)
+        setWallet(data?.wallet)
       });
       socket.on("current_Timer", (data) => {
         console.log("current_Timer", data)
