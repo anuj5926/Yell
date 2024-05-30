@@ -108,6 +108,7 @@ const ContextProvider = ({ children }) => {
       socket.on("session_result", (data) => {
         console.log("session_result", data)
         setSessionResult(data);
+        setWallet(data?.updated_wallet)
       });
     }
   }, [socket, socketConnected])
