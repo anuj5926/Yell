@@ -95,20 +95,23 @@ const ContextProvider = ({ children }) => {
       });
       socket.on("depositConfirm", (data) => {
         console.log("depositConfirm", data)
-        setWallet(data?.wallet)
+        setWallet(data?.updated_wallet)
       });
       socket.on("withdrawConfirm", (data) => {
         console.log("withdrawConfirm", data)
-        setWallet(data?.wallet)
+        setWallet(data?.updated_wallet)
       });
       socket.on("current_Timer", (data) => {
         console.log("current_Timer", data)
         setCurrentTimer(data);
       });
+      socket.on("updated_wallet", (data) => {
+        console.log("updated_wallet", data)
+        setWallet(data?.updated_wallet);
+      });
       socket.on("session_result", (data) => {
         console.log("session_result", data)
         setSessionResult(data);
-        setWallet(data?.updated_wallet)
       });
     }
   }, [socket, socketConnected])
