@@ -15,7 +15,7 @@ body {
 }
 
 .wrapper .sidebar {
-  background: #434343;
+  background: -webkit-linear-gradient(left, #FF4B2B, #FF416C);
   position: fixed;
   top: 127px;
   left: 0;
@@ -89,7 +89,7 @@ body {
 }
 
 .wrapper .section .top_navbar {
-  background: #434343;
+  background: -webkit-linear-gradient(left, #FF4B2B, #FF416C);
   height: 50px;
   display: flex;
   align-items: center;
@@ -739,7 +739,7 @@ tr:hover {
 }
 
 .LogoutButton {
-  background-color: red !important;
+  background-color: #434343 !important;
   width: 170px;
   margin-left: 30px;
   border-radius: 50px;
@@ -747,7 +747,7 @@ tr:hover {
 }
 
 .LogoutButton a:hover {
-  background-color: #ff4266 !important;
+  background-color: grey !important;
   border-radius: 50px;
 }
 
@@ -1482,15 +1482,6 @@ form .btn1 input[type="submit"] {
   background-color: #333;
 }
 
-
-/* body {
-  background-color: #0e1d3b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-} */
 
 .modal1 {
   background: #142b56;

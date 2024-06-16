@@ -39,19 +39,23 @@ const ContextProvider = ({ children }) => {
           username: JSON.parse(localStorage.getItem('userinfo'))?.username
         }
         let res = await SessionDetail(data)
-        if (res.data.status) {
-          setLoad(false);
-          setSessionDetail(res.data);
-          setWallet(res.data.updated_wallet)
-          setSessionDetailStatus(true);
-        } else {
-          if (res.data.message === "token not belonging to the user") {
-            socket?.disconnect();
+        console.log(res)
+        if (res) {
+          if (res.data.status) {
             setLoad(false);
-            localStorage.removeItem('userinfo');
-            navigate('/');
+            setSessionDetail(res.data);
+            setWallet(res.data.updated_wallet)
+            setSessionDetailStatus(true);
+          } else {
+            if (res.data.message === "token not belonging to the user") {
+              socket?.disconnect();
+              setLoad(false);
+              localStorage.removeItem('userinfo');
+              navigate('/');
+            }
           }
         }
+        setLoad(false);
       }
       else {
         setSessionDetail({})
@@ -88,10 +92,17 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     if (socketConnected) {
 
-      socket.emit('newUserJoin', sessionDetail?.session_data?.session_id);
+      socket.emit('newUserJoin', {
+        session_id:sessionDetail?.session_data?.session_id?sessionDetail?.session_data?.session_id:"",
+        username: JSON.parse(localStorage.getItem('userinfo'))?.username
+      });
 
       socket.on("session_details", (data) => {
         console.log("session_details", data)
+        setSessionDetail(prevData =>({
+          ...prevData,
+          current_session_id: data.session_id
+        }))
       });
       socket.on("depositConfirm", (data) => {
         console.log("depositConfirm", data)
@@ -119,7 +130,7 @@ const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        setSessionResult,setUserInfo, userInfo, setLoad, load, sessionDetail, setLoadColor, loadColor, setNumberModal, numberModal,
+        setSessionResult, setUserInfo, userInfo, setLoad, load, sessionDetail, setLoadColor, loadColor, setNumberModal, numberModal,
         setNumberSelected, numberSelected, setDepositModal, depositModal, setSideBarOpen, sideBarOpen, currentTimer, socket, wallet,
         setWallet, sessionResult, setWithdrawDetailModalStatus, setWithdrawDetailModal, withdrawDetailModalStatus, withdrawDetailModal
       }}

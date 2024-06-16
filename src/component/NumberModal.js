@@ -8,14 +8,23 @@ export default function NumberModal() {
     const { wallet, setWallet, sessionDetail, numberModal, numberSelected, setNumberModal, setLoad, setLoadColor, setNumberSelected } = useContext(Context);
     const [betAmount, setBetAmount] = useState(10);
 
-    useEffect(() => {
-        if (Number(betAmount) < 10) {
-            setBetAmount(10);
-        }
-    }, [betAmount])
-
-
     const handlePlacebet = async () => {
+
+        if(betAmount < 10){
+            toast.success('Minimum ', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Flip,
+            });
+            return ;
+        }
+
         if (betAmount < wallet) {
             setLoad(true);
             setLoadColor("#434343");
@@ -90,7 +99,7 @@ export default function NumberModal() {
         <>
             {numberModal && <div className="modal">
                 <div className="modal-content">
-                    <button className="Numberbtn btn-close" onClick={() => setNumberModal(false)}>
+                    <button className="Numberbtn btn-close" onClick={() =>{setNumberModal(false);setBetAmount(10);setNumberSelected("")}}>
                         <i className="fas fa-times" />
                     </button>
                     <h2>
@@ -106,7 +115,7 @@ export default function NumberModal() {
                             id="betAmount"
                             className="amount-input"
                             value={betAmount}
-                            onChange={(e) => { setBetAmount(e.target.value) }}
+                            onChange={(e) => {/^\d*$/.test(e.target.value) && setBetAmount(e.target.value) }}
                         />
                         <button className="Numberbtn btn-increase" onClick={() => { setBetAmount(betAmount + 10) }}>
                             <i className="fas fa-plus" />

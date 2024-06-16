@@ -70,6 +70,7 @@ export default function BetHistory() {
                             <th>Transaction ID</th>
                             <th>Position Number</th>
                             <th>Bet Amount</th>
+                            <th>Win Amount</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,9 +78,10 @@ export default function BetHistory() {
                             return (
                                 <tr key={i}>
                                     <td>{ele?.session_id}</td>
-                                    <td>{ele?.players_bet_details?.transaction_id   }</td>
-                                    <td>{ele?.players_bet_details?.position_number}</td>
-                                    <td>{ele?.players_bet_details?.bet_amount}</td>
+                                    <td>{ele?._id.slice(-5)   }</td>
+                                    <td>{ele?.winning_number}</td>
+                                    <td style={{color :"red"}}>{ele?.matchedWinningDetails[0]?.amount>0 ?`+`:`-`}{ele?.matchedPlayersBetDetails[0]?.bet_amount}</td>
+                                    <td style={{color :"green"}}>{ele?.matchedWinningDetails[0]?.amount? `+${ele?.matchedWinningDetails[0]?.amount}`:`0`}</td>
                                 </tr>
                             )
                         })}
