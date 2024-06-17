@@ -91,9 +91,9 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (socketConnected) {
-
+      console.log(sessionDetail?.current_session_id);
       socket.emit('newUserJoin', {
-        session_id:sessionDetail?.session_data?.session_id?sessionDetail?.session_data?.session_id:"",
+        session_id:sessionDetail?.current_session_id?sessionDetail?.current_session_id:"",
         username: JSON.parse(localStorage.getItem('userinfo'))?.username
       });
 

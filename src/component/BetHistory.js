@@ -10,9 +10,9 @@ export default function BetHistory() {
     const navigate = useNavigate();
 
     const [betHistoryData, setBetHistoryData] = useState([]);
-    const { setLoad, setLoadColor,numberModal,sideBarOpen,wallet } = useContext(Context);
+    const { setLoad, setLoadColor, numberModal, sideBarOpen, wallet } = useContext(Context);
     useEffect(() => {
-        if (pathname === "/betHistory" && !numberModal && !sideBarOpen ) {
+        if (pathname === "/betHistory" && !numberModal && !sideBarOpen) {
             handleBetHistory();
         }
     }, [pathname])
@@ -26,7 +26,24 @@ export default function BetHistory() {
         let res = await GetBetHistory(data);
         if (res) {
             if (res.data.status) {
-                setBetHistoryData(res.data.bet_history)
+                const result = []
+                let data =res.data.bet_history;
+
+                data.forEach(entry => {
+                    if (entry.matchedPlayersBetDetails.length > 0) {
+                        entry.matchedPlayersBetDetails.forEach(winningDetail => {
+                            const newObj = {
+                                ...entry,
+                                matchedPlayersBetDetails: winningDetail
+                            };
+                            result.push(newObj);
+                        });
+                    } else {
+                        result.push(entry);
+                    }
+                });
+                console.log(result);
+                setBetHistoryData(result)
             }
             else {
                 toast.error(res.data.message, {
@@ -62,7 +79,7 @@ export default function BetHistory() {
                 </div>
             </div>
 
-            <div className="Tablecontainer" style={{ marginTop: "60px", width: "100%" }}>
+            <div className="Tablecontainer betHistorytableCss" >
                 <table>
                     <thead>
                         <tr>
@@ -70,7 +87,6 @@ export default function BetHistory() {
                             <th>Transaction ID</th>
                             <th>Position Number</th>
                             <th>Bet Amount</th>
-                            <th>Win Amount</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,10 +94,9 @@ export default function BetHistory() {
                             return (
                                 <tr key={i}>
                                     <td>{ele?.session_id}</td>
-                                    <td>{ele?._id.slice(-5)   }</td>
+                                    <td>{ele?._id.slice(-5)}</td>
                                     <td>{ele?.winning_number}</td>
-                                    <td style={{color :"red"}}>{ele?.matchedWinningDetails[0]?.amount>0 ?`+`:`-`}{ele?.matchedPlayersBetDetails[0]?.bet_amount}</td>
-                                    <td style={{color :"green"}}>{ele?.matchedWinningDetails[0]?.amount? `+${ele?.matchedWinningDetails[0]?.amount}`:`0`}</td>
+                                    <td style={{color:ele?.matchedWinningDetails?.length > 0 ?"green": "red" }}>{ele?.matchedWinningDetails?.length > 0 ? `+` : `-`}{ele?.matchedPlayersBetDetails?.bet_amount}</td>
                                 </tr>
                             )
                         })}

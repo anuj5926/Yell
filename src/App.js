@@ -19,7 +19,6 @@ function App() {
   const {direction }= screenOrientation();
   const { load, loadColor } = useContext(Context);
 
-  console.log("object",direction)
   return (
     <>
       <ToastContainer

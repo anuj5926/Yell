@@ -1208,18 +1208,21 @@ h2 {
 }
 
 @media (max-width: 470px) {
+
   th,
   td {
     padding: 12px 5px;
     font-size: 13px;
   }
-  .btn{
+
+  .btn {
     padding: 0 5px !important;
     font-size: 12px !important;
   }
 }
+
 @media (max-width: 400px) {
-  .gameName{
+  .gameName {
     font-size: 20px;
   }
 }
@@ -1425,7 +1428,7 @@ form .btn1 input[type="submit"] {
   cursor: pointer;
 }
 
-.content{
+.content {
   background: #f5f6fa;
   position: fixed;
   left: 0;
@@ -1520,7 +1523,7 @@ form .btn1 input[type="submit"] {
   display: block;
   font-size: 76px;
   margin-top: 5px;
-  font-weight:600;
+  font-weight: 600;
 }
 
 .close-button1 {
@@ -1585,7 +1588,7 @@ form .btn1 input[type="submit"] {
   height: 20px;
   bottom: 10%;
   right: 20%;
-   transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .ball.blue2 {
@@ -1596,7 +1599,7 @@ form .btn1 input[type="submit"] {
   left: 20%;
 }
 
-.modal-overlay{
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1617,12 +1620,15 @@ form .btn1 input[type="submit"] {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .form-group {
   margin-bottom: 20px;
 }
+
 .form-group label {
   font-weight: bold;
 }
+
 .form-group input[type="text"],
 .form-group textarea {
   width: 100%;
@@ -1632,9 +1638,11 @@ form .btn1 input[type="submit"] {
   box-sizing: border-box;
   resize: vertical;
 }
+
 .form-group textarea {
   min-height: 150px;
 }
+
 .btn-submit {
   background-color: #333;
   color: #fff;
@@ -1643,6 +1651,14 @@ form .btn1 input[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .btn-submit:hover {
   background-color: #555;
+}
+
+.betHistorytableCss {
+  overflow-y: visible !important;
+  height: 100vh;
+  margin-top: 60px;
+  width: 100%
 }

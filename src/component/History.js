@@ -3,7 +3,7 @@ import { Context } from '../Context/Context';
 
 export default function History() {
 
-    const {sessionDetail} =useContext(Context);
+    const {sessionDetail,sessionResult} =useContext(Context);
 
     const [tableData, setTableData] = useState([])
 
@@ -15,9 +15,24 @@ export default function History() {
         }
     },[sessionDetail]);
 
+    useEffect(() =>{
+        if (auth_token && Object.keys(sessionResult).length > 0) {
+            let array = tableData;
+            let newData ={
+                "session_id": sessionResult.session_id,
+                "registration_status": sessionResult.registration_status,
+                "collection_amount": sessionResult.collection_amount,
+                "winning_number": sessionResult.winning_number
+            }
+            array.unshift(newData)
+            array.pop();
+            setTableData(array);
+        }
+    },[sessionResult]);
+
     return (
         <>
-            <div className="Tablecontainer">
+            <div className="Tablecontainer" >
                 <table>
                     <thead>
                         <tr>
