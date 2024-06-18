@@ -1657,8 +1657,9 @@ form .btn1 input[type="submit"] {
 }
 
 .betHistorytableCss {
-  overflow-y: visible  !important;
+  overflow-y: visible !important;
   height: 100vh;
   margin-top: 60px;
-  width: 100%
+  width: 100%;
+  background-color: #f5f6fa;
 }

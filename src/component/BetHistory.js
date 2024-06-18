@@ -95,7 +95,7 @@ export default function BetHistory() {
                                 <tr key={i}>
                                     <td>{ele?.session_id}</td>
                                     <td>{ele?._id.slice(-5)}</td>
-                                    <td>{ele?.winning_number}</td>
+                                    <td>{ele?.matchedPlayersBetDetails?.position_number}</td>
                                     <td style={{color:ele?.matchedWinningDetails?.length > 0 ?"green": "red" }}>{ele?.matchedWinningDetails?.length > 0 ? `+` : `-`}{ele?.matchedPlayersBetDetails?.bet_amount}</td>
                                 </tr>
                             )
