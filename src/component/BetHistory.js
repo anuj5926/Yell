@@ -27,22 +27,38 @@ export default function BetHistory() {
         if (res) {
             if (res.data.status) {
                 const result = []
-                let data =res.data.bet_history;
+                let data = res.data.bet_history;
 
                 data.forEach(entry => {
-                    if (entry.matchedPlayersBetDetails.length > 0) {
-                        entry.matchedPlayersBetDetails.forEach(winningDetail => {
+                    if (entry.matchedWinningDetails.length > 0) {
+                        entry.matchedWinningDetails.forEach(winDetail => {
                             const newObj = {
                                 ...entry,
-                                matchedPlayersBetDetails: winningDetail
+                                matchedPlayersBetDetails: [],
+                                matchedWinningDetails: [winDetail]
                             };
                             result.push(newObj);
                         });
-                    } else {
-                        result.push(entry);
+                    }
+
+                    if (entry.matchedPlayersBetDetails.length > 0) {
+                        entry.matchedPlayersBetDetails.forEach(betDetail => {
+                            const newObj = {
+                                ...entry,
+                                matchedPlayersBetDetails: [betDetail],
+                                matchedWinningDetails: []
+                            };
+                            result.push(newObj);
+                        });
+                    } else if (entry.matchedWinningDetails.length === 0) {
+                        result.push({
+                            ...entry,
+                            matchedPlayersBetDetails: [],
+                            matchedWinningDetails: []
+                        });
                     }
                 });
-                console.log(result);
+                console.log(result)
                 setBetHistoryData(result)
             }
             else {
@@ -62,7 +78,6 @@ export default function BetHistory() {
         }
         setLoad(false);
     }
-
 
     return (
         <div className='depositContainer'>
@@ -93,10 +108,10 @@ export default function BetHistory() {
                         {betHistoryData?.map((ele, i) => {
                             return (
                                 <tr key={i}>
-                                    <td>{ele?.session_id}</td>
-                                    <td>{ele?._id.slice(-5)}</td>
-                                    <td>{ele?.matchedPlayersBetDetails?.position_number}</td>
-                                    <td style={{color:ele?.matchedWinningDetails?.length > 0 ?"green": "red" }}>{ele?.matchedWinningDetails?.length > 0 ? `+` : `-`}{ele?.matchedPlayersBetDetails?.bet_amount}</td>
+                                    <td >{ele?.session_id}</td>
+                                    <td >{ele?.matchedPlayersBetDetails[0]?.transaction_id && ele?.matchedPlayersBetDetails[0]?.transaction_id}{!ele?.matchedPlayersBetDetails[0]?.transaction_id ? ele?.matchedWinningDetails[0]?.transaction_id ?ele?.matchedWinningDetails[0]?.transaction_id:'-':''}</td>
+                                    <td >{ele?.matchedPlayersBetDetails[0]?.position_number?ele?.matchedPlayersBetDetails[0]?.position_number:ele?.winning_number}</td>
+                                    <td style={{color: ele?.matchedWinningDetails?.length > 0 ?'green' : "red" }}>{ele?.matchedWinningDetails?.length > 0 ? `+` : `-`}{ele?.matchedPlayersBetDetails[0]?.bet_amount?ele?.matchedPlayersBetDetails[0]?.bet_amount:ele?.matchedWinningDetails[0]?.amount}</td>
                                 </tr>
                             )
                         })}

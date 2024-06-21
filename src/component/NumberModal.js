@@ -11,7 +11,7 @@ export default function NumberModal() {
     const handlePlacebet = async () => {
 
         if(betAmount < 10){
-            toast.success('Please Enter minimum amount which is 10', {
+            toast.error('Please Enter minimum amount which is 10', {
                 position: "top-right",
                 autoClose: 1500,
                 hideProgressBar: false,
