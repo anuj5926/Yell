@@ -13,7 +13,7 @@ export default function GamePage() {
                 <Home />
                 <div className="midPart">
                     <Number />
-                    <History />
+                    {/* <History /> */}
                 </div>
                 <NumberModal/>
                 <WinningModal/>
