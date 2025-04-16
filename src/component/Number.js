@@ -101,56 +101,112 @@ export default function Number() {
                 </div>
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <label for="hruf">Hruf-Type</label>
-                    <select id="hruf">
+            <div className="main-container">
+                <div className="input-group">
+                    <label htmlFor="hruf-type">Hruf-Type</label>
+                    <select id="hruf-type">
                         <option>A.H.</option>
                     </select>
-                    <input type="text" placeholder="Number" />
-                    <input type="text" placeholder="Amount" />
+                    <label htmlFor="number" style={{ color: "#007bff" }}>
+                        Number
+                    </label>
+                    <input type="text" id="number" />
+                    <label htmlFor="amount" style={{ color: "#28a745" }}>
+                        Amount
+                    </label>
+                    <input type="text" id="amount" />
+                    <button className="done-btn">DONE</button>
                 </div>
-                <div class="buttons">
-                    <button class="btn btn-done">DONE</button>
-                    <button class="btn btn-save">Save</button>
-                </div>
-                <textarea placeholder="Paste your copied text here!
-Example:- 01,02,11 (20) 35,76,87(10)
-NOTE: Amount Always type in Bracket Like This (50)."></textarea>
-                <div class="buttons">
-                    <button class="btn btn-clear">CLEAR</button>
-                    <div class="with-palat">
-                        <input type="checkbox" id="palat" />
-                        <label for="palat">With Palat</label>
+                {/* <div className="textarea-container">
+                    <div>Paste your copied text here!</div>
+                    <div className="example-text">Example:- 01,02,11 (20) 35,76,87(10)</div>
+                    <div className="note-text" style={{ color: "#6c757d" }}>
+                        नोट :- राशि हमेशा इस तरह ब्रैकेट में टाइप करें (50)
                     </div>
-                    <button class="btn btn-done">DONE</button>
+                    <div className="note-text">
+                        NOTE :- Amount Always type in Bracket Like This (50).
+                    </div>
+                </div>*/}
+
+                <div class="textarea-container">
+                    <textarea placeholder="Paste your copied text here!
+Example:- 01,02,11 (20) 35,76,87(10)
+नोट :- राशि हमेशा इस तरह ब्रैकेट में टाइप करें (50)
+NOTE :- Amount Always type in Bracket Like This (50)."></textarea>
                 </div>
-                <div class="section-title">Crossing</div>
-                <div class="row">
-                    <input type="text" placeholder="Number" />
-                    <input type="text" placeholder="Amount" />
-                    <input type="text" placeholder="JodaCut" />
+                <div
+                    style={{
+                        display: "flex",
+                        gap: 10,
+                        alignItems: "center",
+                        justifyContent: "flex-end",
+                        marginBottom: 20
+                    }}
+                >
+                    <button className="clear-btn">CLEAR</button>
+                    <div className="checkbox-container">
+                        <input type="checkbox" id="with-palat" />
+                        <label htmlFor="with-palat">With Palat</label>
+                    </div>
+                    <button className="done-btn">DONE</button>
+                </div> 
+
+                <div className="crossing-group">
+                    <div className="controls-row">
+                        <label className="section-title">Crossing</label>
+                        <div className="input-column">
+                            <span className="colored-label">Number</span>
+                            <input type="text" />
+                        </div>
+                        <div className="input-column">
+                            <span className="colored-label green-label">Amount</span>
+                            <input type="text" />
+                        </div>
+                        <div className="input-column">
+                            <span className="colored-label red-label">JodaCut</span>
+                            <input type="text" />
+                        </div>
+                        <button className="done-btn">DONE</button>
+                    </div>
                 </div>
-                <div class="buttons">
-                    <button class="btn btn-done">DONE</button>
+                <div className="crossing-group">
+                    <div className="controls-row">
+                        <label className="section-title">Batta Crossing</label>
+                        <div className="input-column">
+                            <span className="colored-label">Number</span>
+                            <input type="text" />
+                        </div>
+                        <div className="input-column">
+                            <span className="colored-label">Number</span>
+                            <input type="text" />
+                        </div>
+                        <div className="input-column">
+                            <span className="colored-label green-label">Amount</span>
+                            <input type="text" />
+                        </div>
+                        <button className="done-btn">DONE</button>
+                    </div>
                 </div>
-                <div class="section-title">Batta Crossing</div>
-                <div class="row">
-                    <input type="text" placeholder="Number" />
-                    <input type="text" placeholder="Amount" />
-                </div>
-                <div class="buttons">
-                    <button class="btn btn-done">DONE</button>
-                </div>
-                <div class="section-title">Ladi</div>
-                <div class="row">
-                    <input type="text" placeholder="Number" />
-                    <input type="text" placeholder="Amount" />
-                </div>
-                <div class="buttons">
-                    <button class="btn btn-done">DONE</button>
+                <div className="crossing-group">
+                    <div className="controls-row">
+                        <label className="section-title">Ladi</label>
+                        <div className="input-column">
+                            <span className="colored-label">Number</span>
+                            <input type="text" />
+                        </div>
+                        <div className="input-column">
+                            <span className="colored-label">Number</span>
+                            <input type="text" />
+                        </div>
+                        <div className="input-column">
+                            <span className="colored-label green-label">Amount</span>
+                            <input type="text" />
+                        </div>
+                        <button className="done-btn">DONE</button>
+                    </div>
                 </div>
             </div>
+
 
 
             < div className="footer" >
